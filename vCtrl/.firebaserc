@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "vctrlpvtltd": {
+      "hosting": {
+        "vCtrl": [
+          "vctrlpvtltd"
+        ]
+      }
+    }
+  }
+}

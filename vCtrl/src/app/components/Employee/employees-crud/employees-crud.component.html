@@ -1,0 +1,113 @@
+<h1>Add Employee</h1>
+
+<div class="text-center">
+  <img src="../../../../assets/user.svg" style="width: 80px;">
+  <div class="row" style="text-align: left;">
+    <h4><strong>Basic details </strong></h4>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>First name</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Last name</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput [matDatepicker]="dp3" disabled>
+        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Blood Group</mat-label>
+        <mat-select>
+          <mat-option>Select Blood group</mat-option>
+          <mat-option>A+</mat-option>
+          <mat-option>A -</mat-option>
+          <mat-option>A Unknown</mat-option>
+          <mat-option>B+</mat-option>
+          <mat-option>B-</mat-option>
+          <mat-option>BUnknown</mat-option>
+          <mat-option>AB+</mat-option>
+          <mat-option>AB-</mat-option>
+          <mat-option>AB Unknown</mat-option>
+          <mat-option>O+</mat-option>
+          <mat-option>O-</mat-option>
+          <mat-option>O Unknown</mat-option>
+          <mat-option>Unknown</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Marital status</mat-label>
+        <mat-select>
+          <mat-option>Select marital status</mat-option>
+          <mat-option>Single</mat-option>
+          <mat-option>Married</mat-option>
+          <mat-option>Widowed</mat-option>
+          <mat-option>Separated</mat-option>
+          <mat-option>Divorced</mat-option>
+          <mat-option>Unknown</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row" style="text-align: left;">
+    <h4><strong>Contact details </strong></h4>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Personal email id</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Personal phone</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Official email id</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Official phone</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row" style="text-align: left;">
+    <h4><strong>Emergency Contact details </strong></h4>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Contact name</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Relationship</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Phone number</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
