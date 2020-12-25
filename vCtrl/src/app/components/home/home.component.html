@@ -9,17 +9,17 @@
 <mat-sidenav-container class="example-container" autosize>
   <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
     (mouseleave)="mouseleave()">
-    <mat-nav-list>
+    <mat-nav-list *ngFor="let menu of subMenu">
       <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
-        <span class="full-width" *ngIf="isExpanded || isShowing">Organization</span>
-        <mat-icon color="primary" mat-list-icon>home</mat-icon>
+        <span class="full-width" *ngIf="isExpanded || isShowing">{{menu.title}}</span>
+        <mat-icon color="primary" mat-list-icon>{{menu.icon}}</mat-icon>
         <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more
         </mat-icon>
       </mat-list-item>
-      <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
-        <a mat-list-item routerLink="employees">Employees</a>
-        <a mat-list-item href="...">Submenu Item 2</a>
-        <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
+      <div class="submenu" [ngClass]="{'expanded' : showSubmenu}"
+        *ngIf="isShowing || isExpanded&& menu.children.length>0">
+        <a mat-list-item *ngFor="let child of menu.children" [routerLink]="child.url">{{child.title}}</a>
+        <!-- <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
           <span class="full-width" *ngIf="isExpanded || isShowing">Nested Menu</span>
           <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">
             expand_more</mat-icon>
@@ -27,7 +27,7 @@
         <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
           <mat-list-item>SubSubmenu Item 1</mat-list-item>
           <mat-list-item>SubSubmenu Item 2</mat-list-item>
-        </div>
+        </div> -->
       </div>
     </mat-nav-list>
     <mat-nav-list>

@@ -7,7 +7,9 @@ export interface EmployeeModal {
     dob: string,
     profileUrl: string,
     blood_group: string,
-    marital_status: boolean
+    marital_status: boolean,
+    aadhar_number: string,
+    pan_number: string,
 
     doj: string,
     department: string,
@@ -24,4 +26,9 @@ export interface EmployeeModal {
     emergency_name: string,
     emergency_contact: string,
     emergency_relation: string,
+
+    bank_account_number: string,
+    bank_ifsc: string,
+    bank_branch: string,
+    bank_account_name: string
 }

@@ -47,6 +47,18 @@
     </div>
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
+        <mat-label>Aadhar number</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>PAN Number</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
         <mat-label>Marital status</mat-label>
         <mat-select>
           <mat-option>Select marital status</mat-option>
@@ -57,6 +69,42 @@
           <mat-option>Divorced</mat-option>
           <mat-option>Unknown</mat-option>
         </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row" style="text-align: left;">
+    <h4><strong>Job details </strong></h4>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Package in rupees</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Date of Joining</mat-label>
+        <input matInput [matDatepicker]="dp4" disabled>
+        <mat-datepicker-toggle matSuffix [for]="dp4"></mat-datepicker-toggle>
+        <mat-datepicker #dp4 disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Role</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Department</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Designation</mat-label>
+        <input matInput>
       </mat-form-field>
     </div>
   </div>
@@ -100,7 +148,24 @@
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
         <mat-label>Relationship</mat-label>
-        <input matInput>
+        <mat-select>
+          <mat-option>Select Relationship</mat-option>
+          <mat-option>Father</mat-option>
+          <mat-option>Mother</mat-option>
+          <mat-option>Spouse</mat-option>
+          <mat-option>Brother</mat-option>
+          <mat-option>Sister</mat-option>
+          <mat-option>Son</mat-option>
+          <mat-option>Daughter</mat-option>
+          <mat-option>Father in-law</mat-option>
+          <mat-option>Mother in-law</mat-option>
+          <mat-option>Nephew</mat-option>
+          <mat-option>Uncle</mat-option>
+          <mat-option>Aunt</mat-option>
+          <mat-option>Grandfather</mat-option>
+          <mat-option>Grandmother</mat-option>
+          <mat-option>Others</mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
     <div class="col-sm-4">
@@ -109,5 +174,40 @@
         <input matInput>
       </mat-form-field>
     </div>
+  </div>
+  <div class="row" style="text-align: left;">
+    <h4><strong>Bank details </strong></h4>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Account number</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Account holder name</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>IFSC Code</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field class="example-full-width">
+        <mat-label>Branch</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+  </div>
+  <div style="text-align: right;">
+    <button mat-button>
+      <mat-icon>close</mat-icon>Cancel
+    </button>
+    <button mat-raised-button color="primary">
+      <mat-icon>save</mat-icon>Save
+    </button>
   </div>
 </div>

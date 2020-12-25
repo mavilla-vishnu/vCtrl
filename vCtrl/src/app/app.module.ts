@@ -32,6 +32,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { RoleListComponent } from './components/Roles/role-list/role-list.component';
+import { RoleCrudComponent } from './components/Roles/role-crud/role-crud.component';
+import { DepartmentListComponent } from './components/Departments/department-list/department-list.component';
+import { DepartmentCrudComponent } from './components/Departments/department-crud/department-crud.component';
+import { DesignationListComponent } from './components/Designations/designation-list/designation-list.component';
+import { DesignationCrudComponent } from './components/Designations/designation-crud/designation-crud.component'
 
 @NgModule({
   declarations: [
@@ -40,7 +47,13 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     HomeComponent,
     LoadingComponent,
     EmployeesListComponent,
-    EmployeesCRUDComponent
+    EmployeesCRUDComponent,
+    RoleListComponent,
+    RoleCrudComponent,
+    DepartmentListComponent,
+    DepartmentCrudComponent,
+    DesignationListComponent,
+    DesignationCrudComponent
   ],
   exports: [
     AngularFireAuthModule
@@ -70,7 +83,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    AngularFirestoreModule
   ],
   providers: [
     AngularFireAuthGuard,
