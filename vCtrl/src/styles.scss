@@ -50,6 +50,7 @@ body {
 }
 
 .example-sidenav {
+  width: 250px;
   user-select: none;
 }
 
@@ -71,9 +72,7 @@ body {
 }
 
 .submenu {
-  overflow-y: hidden;
   transition: transform 300ms ease;
-  transform: scaleY(0);
   transform-origin: top;
   padding-left: 30px;
 }

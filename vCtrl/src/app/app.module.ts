@@ -38,7 +38,12 @@ import { RoleCrudComponent } from './components/Roles/role-crud/role-crud.compon
 import { DepartmentListComponent } from './components/Departments/department-list/department-list.component';
 import { DepartmentCrudComponent } from './components/Departments/department-crud/department-crud.component';
 import { DesignationListComponent } from './components/Designations/designation-list/designation-list.component';
-import { DesignationCrudComponent } from './components/Designations/designation-crud/designation-crud.component'
+import { DesignationCrudComponent } from './components/Designations/designation-crud/designation-crud.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { DeleteConfirmationComponent } from './partials/delete-confirmation/delete-confirmation.component';
+import { TitleCaseDirective } from './core/Directives/title-case.directive';
+import { NumberOnlyDirective } from './core/Directives/number-only.directive';
+import { CapialiseTextDirective } from './core/Directives/capialise-text.directive';
 
 @NgModule({
   declarations: [
@@ -53,7 +58,11 @@ import { DesignationCrudComponent } from './components/Designations/designation-
     DepartmentListComponent,
     DepartmentCrudComponent,
     DesignationListComponent,
-    DesignationCrudComponent
+    DesignationCrudComponent,
+    DeleteConfirmationComponent,
+    TitleCaseDirective,
+    NumberOnlyDirective,
+    CapialiseTextDirective
   ],
   exports: [
     AngularFireAuthModule
@@ -84,7 +93,8 @@ import { DesignationCrudComponent } from './components/Designations/designation-
     MatNativeDateModule,
     MatSelectModule,
     MatSlideToggleModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    MatMenuModule
   ],
   providers: [
     AngularFireAuthGuard,

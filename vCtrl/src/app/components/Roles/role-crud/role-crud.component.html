@@ -1,17 +1,22 @@
-<h1>Add Role</h1>
-<mat-form-field class="example-full-width">
-  <mat-label>Role name</mat-label>
-  <input matInput>
-</mat-form-field>
-<mat-form-field class="example-full-width">
-  <mat-label>Description</mat-label>
-  <input matInput>
-</mat-form-field>
-<mat-form-field class="example-full-width">
-  <mat-label>Comments</mat-label>
-  <input matInput>
-</mat-form-field>
+<h1>{{title}}</h1>
+<form [formGroup]="roleForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>Role name</mat-label>
+    <input matInput formControlName="roleName">
+    <mat-error
+      *ngIf="roleForm.controls['roleName'].hasError('required')&&roleForm.controls['roleName'].touched||roleForm.controls['roleName'].dirty">
+      Enter valid role name</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Description</mat-label>
+    <input matInput formControlName="roleDescription">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Comments</mat-label>
+    <input matInput formControlName="roleComments">
+  </mat-form-field>
+</form>
 <div>
-  <button mat-raised-button color="primary" class="float-right">Save</button>
-  <button mat-button class="float-right">Cancel</button>
+  <button mat-raised-button color="primary" class="float-right" (click)="saveRole()">Save</button>
+  <button mat-button class="float-right" (click)="dismiss()">Cancel</button>
 </div>

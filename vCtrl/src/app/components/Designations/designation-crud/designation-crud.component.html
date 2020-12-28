@@ -1,1 +1,22 @@
-<p>designation-crud works!</p>
+<h1>{{title}}</h1>
+<form [formGroup]="designationForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>Designation name</mat-label>
+    <input matInput formControlName="designationName">
+    <mat-error
+      *ngIf="designationForm.controls['designationName'].hasError('required')&&designationForm.controls['designationName'].touched||designationForm.controls['designationName'].dirty">
+      Enter valid designation name</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Description</mat-label>
+    <input matInput formControlName="designationDescription">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Comments</mat-label>
+    <input matInput formControlName="designationComments">
+  </mat-form-field>
+</form>
+<div>
+  <button mat-raised-button color="primary" class="float-right" (click)="saveDesignation()">Save</button>
+  <button mat-button class="float-right" (click)="dismiss()">Cancel</button>
+</div>

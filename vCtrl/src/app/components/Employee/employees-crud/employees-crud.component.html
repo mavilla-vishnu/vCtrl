@@ -7,13 +7,13 @@
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
         <mat-label>First name</mat-label>
-        <input matInput>
+        <input matInput appTitleCase>
       </mat-form-field>
     </div>
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
         <mat-label>Last name</mat-label>
-        <input matInput>
+        <input matInput appTitleCase>
       </mat-form-field>
     </div>
     <div class="col-sm-4">
@@ -48,13 +48,13 @@
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
         <mat-label>Aadhar number</mat-label>
-        <input matInput>
+        <input matInput appNumberOnly maxlength="16">
       </mat-form-field>
     </div>
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
         <mat-label>PAN Number</mat-label>
-        <input matInput>
+        <input matInput appCapialiseText maxlength="10">
       </mat-form-field>
     </div>
     <div class="col-sm-4">
@@ -78,7 +78,7 @@
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
         <mat-label>Package in rupees</mat-label>
-        <input matInput>
+        <input matInput appNumberOnly>
       </mat-form-field>
     </div>
     <div class="col-sm-4">
@@ -91,20 +91,28 @@
     </div>
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
-        <mat-label>Role</mat-label>
-        <input matInput>
+        <mat-label>Select Role</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let role of rolesArray" [value]="role.id">{{role.roleName}}</mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
-        <mat-label>Department</mat-label>
-        <input matInput>
+        <mat-label>Select department</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let department of departmentArray" [value]="department.id">{{department.departmentName}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
-        <mat-label>Designation</mat-label>
-        <input matInput>
+        <mat-label>Select Designation</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let designation of designationArray" [value]="designation.id">
+            {{designation.designationName}}</mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
   </div>
@@ -114,25 +122,25 @@
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
         <mat-label>Personal email id</mat-label>
-        <input matInput>
+        <input matInput type="email">
       </mat-form-field>
     </div>
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
         <mat-label>Personal phone</mat-label>
-        <input matInput>
+        <input matInput type="tel">
       </mat-form-field>
     </div>
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
         <mat-label>Official email id</mat-label>
-        <input matInput>
+        <input matInput type="email">
       </mat-form-field>
     </div>
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
         <mat-label>Official phone</mat-label>
-        <input matInput>
+        <input matInput type="tel">
       </mat-form-field>
     </div>
   </div>
@@ -142,7 +150,7 @@
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
         <mat-label>Contact name</mat-label>
-        <input matInput>
+        <input matInput appTitleCase>
       </mat-form-field>
     </div>
     <div class="col-sm-4">
@@ -171,7 +179,7 @@
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
         <mat-label>Phone number</mat-label>
-        <input matInput>
+        <input matInput type="tel">
       </mat-form-field>
     </div>
   </div>
@@ -180,13 +188,13 @@
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
         <mat-label>Account number</mat-label>
-        <input matInput>
+        <input matInput type="number" appNumberOnly>
       </mat-form-field>
     </div>
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
         <mat-label>Account holder name</mat-label>
-        <input matInput>
+        <input matInput appTitleCase>
       </mat-form-field>
     </div>
     <div class="col-sm-4">
@@ -198,7 +206,7 @@
     <div class="col-sm-4">
       <mat-form-field class="example-full-width">
         <mat-label>Branch</mat-label>
-        <input matInput>
+        <input matInput appTitleCase>
       </mat-form-field>
     </div>
   </div>

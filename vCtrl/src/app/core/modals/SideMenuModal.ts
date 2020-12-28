@@ -5,5 +5,9 @@ export interface SideMenuModal {
     children?: Array<{
         title: string,
         url: string
-    }>
+    }>,
+    isExpanded: boolean,
+    showSubmenu: boolean,
+    isShowing: boolean,
+    showSubSubMenu: boolean
 }

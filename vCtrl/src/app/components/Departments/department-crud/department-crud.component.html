@@ -1,1 +1,22 @@
-<p>department-crud works!</p>
+<h1>{{title}}</h1>
+<form [formGroup]="departmentForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>Department name</mat-label>
+    <input matInput formControlName="departmentName">
+    <mat-error
+      *ngIf="departmentForm.controls['departmentName'].hasError('required')&&departmentForm.controls['departmentName'].touched||departmentForm.controls['departmentName'].dirty">
+      Enter valid department name</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Description</mat-label>
+    <input matInput formControlName="departmentDescription">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Comments</mat-label>
+    <input matInput formControlName="departmentComments">
+  </mat-form-field>
+</form>
+<div>
+  <button mat-raised-button color="primary" class="float-right" (click)="saveDepartment()">Save</button>
+  <button mat-button class="float-right" (click)="dismiss()">Cancel</button>
+</div>

@@ -15,11 +15,7 @@ import { SideMenuModal } from 'src/app/core/modals/SideMenuModal';
 export class HomeComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav: MatSidenav;
-  isExpanded = true;
-  showSubmenu: boolean = false;
-  isShowing = false;
-  showSubSubMenu: boolean = false;
-
+  isMenuMainExpanded = true;
   subMenu: SideMenuModal[] = [
     {
       title: "Organisation",
@@ -28,29 +24,37 @@ export class HomeComponent implements OnInit {
       children: [
         { title: "Roles", url: "roles" },
         { title: "Departments", url: "departments" },
-        { title: "Designations", url: "designations" },
-      ]
+        { title: "Designations", url: "designations" }
+      ],
+      isExpanded: false,
+      showSubmenu: false,
+      isShowing: true,
+      showSubSubMenu: true
     }, {
       title: "Employees",
       icon: "person",
       url: "/employees",
-      children: []
+      children: [],
+      isExpanded: false,
+      showSubmenu: false,
+      isShowing: true,
+      showSubSubMenu: true
     },
   ];
 
   constructor(private auth: AngularFireAuth, private router: Router, private afs: AngularFirestore) { }
 
-  mouseenter() {
-    if (!this.isExpanded) {
-      this.isShowing = true;
-    }
-  }
+  // mouseenter() {
+  //   if (!this.isExpanded) {
+  //     this.isShowing = true;
+  //   }
+  // }
 
-  mouseleave() {
-    if (!this.isExpanded) {
-      this.isShowing = false;
-    }
-  }
+  // mouseleave() {
+  //   if (!this.isExpanded) {
+  //     this.isShowing = false;
+  //   }
+  // }
 
   ngOnInit(): void {
     this.getSideMenu();
@@ -62,12 +66,12 @@ export class HomeComponent implements OnInit {
   }
 
   getSideMenu() {
-    this.afs.collection("menu").get().subscribe(menu => {
-      var data = menu.docs[0].data();
-      var temp = data["menuList"];
-      this.subMenu = temp;
-      console.log(this.subMenu);
-    });
+    // this.afs.collection("menu").get().subscribe(menu => {
+    //   var data = menu.docs[0].data();
+    //   var temp = data["menuList"];
+    //   this.subMenu = temp;
+    //   console.log(this.subMenu);
+    // });
   }
 
 }
