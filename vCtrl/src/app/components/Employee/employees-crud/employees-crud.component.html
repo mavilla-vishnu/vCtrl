@@ -2,219 +2,244 @@
 
 <div class="text-center">
   <img src="../../../../assets/user.svg" style="width: 80px;">
-  <div class="row" style="text-align: left;">
-    <h4><strong>Basic details </strong></h4>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>First name</mat-label>
-        <input matInput appTitleCase>
-      </mat-form-field>
+  <form [formGroup]="employeeForm">
+    <div class="row" style="text-align: left;">
+      <h4><strong>Basic details </strong></h4>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>First name</mat-label>
+          <input matInput appTitleCase formControlName="firstName">
+          <mat-error *ngIf="employeeForm.controls['firstName'].hasError('required')">Enter first name</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Last name</mat-label>
+          <input matInput appTitleCase formControlName="lastName">
+          <mat-error *ngIf="employeeForm.controls['lastName'].hasError('required')">Enter last name</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Date of Birth</mat-label>
+          <input matInput [matDatepicker]="dp3" disabled formControlName="dob">
+          <mat-error *ngIf="employeeForm.controls['dob'].hasError('required')">Enter date of birth</mat-error>
+          <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+          <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Blood Group</mat-label>
+          <mat-select formControlName="bloodGroup">
+            <mat-option value="">Select Blood group</mat-option>
+            <mat-option value="ap">A+</mat-option>
+            <mat-option value="an">A -</mat-option>
+            <mat-option value="aunknown">A Unknown</mat-option>
+            <mat-option value="bp">B+</mat-option>
+            <mat-option value="bn">B-</mat-option>
+            <mat-option value="bunknown">B Unknown</mat-option>
+            <mat-option value="abpp">AB+</mat-option>
+            <mat-option value="abn">AB-</mat-option>
+            <mat-option value="anu">AB Unknown</mat-option>
+            <mat-option value="opn">O+</mat-option>
+            <mat-option value="on">O-</mat-option>
+            <mat-option value="ounknown">O Unknown</mat-option>
+            <mat-option value="unknown">Unknown</mat-option>
+          </mat-select>
+          <mat-error *ngIf="employeeForm.controls['bloodGroup'].hasError('required')">Select blood group</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Aadhar number</mat-label>
+          <input matInput appNumberOnly maxlength="16" formControlName="aadharNo">
+          <mat-error *ngIf="employeeForm.controls['aadharNo'].hasError('required')">Enter valid aadhar number</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>PAN Number</mat-label>
+          <input matInput appCapialiseText maxlength="10" formControlName="panNo">
+          <mat-error *ngIf="employeeForm.controls['panNo'].hasError('required')">Enter valid PAN number</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Marital status</mat-label>
+          <mat-select formControlName="maritalStatus">
+            <mat-option value="">Select marital status</mat-option>
+            <mat-option value="single">Single</mat-option>
+            <mat-option value="maried">Married</mat-option>
+            <mat-option value="widowed">Widowed</mat-option>
+            <mat-option value="separated">Separated</mat-option>
+            <mat-option value="divorced">Divorced</mat-option>
+            <mat-option value="unknown">Unknown</mat-option>
+          </mat-select>
+          <mat-error *ngIf="employeeForm.controls['maritalStatus'].hasError('required')">Select marital status</mat-error>
+        </mat-form-field>
+      </div>
     </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Last name</mat-label>
-        <input matInput appTitleCase>
-      </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Date of Birth</mat-label>
-        <input matInput [matDatepicker]="dp3" disabled>
-        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
-      </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Blood Group</mat-label>
-        <mat-select>
-          <mat-option value="">Select Blood group</mat-option>
-          <mat-option value="ap">A+</mat-option>
-          <mat-option value="an">A -</mat-option>
-          <mat-option value="aunknown">A Unknown</mat-option>
-          <mat-option value="bp">B+</mat-option>
-          <mat-option value="bn">B-</mat-option>
-          <mat-option value="bunknown">B Unknown</mat-option>
-          <mat-option value="abpp">AB+</mat-option>
-          <mat-option value="abn">AB-</mat-option>
-          <mat-option value="anu">AB Unknown</mat-option>
-          <mat-option value="opn">O+</mat-option>
-          <mat-option value="on">O-</mat-option>
-          <mat-option value="ounknown">O Unknown</mat-option>
-          <mat-option value="unknown">Unknown</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Aadhar number</mat-label>
-        <input matInput appNumberOnly maxlength="16">
-      </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>PAN Number</mat-label>
-        <input matInput appCapialiseText maxlength="10">
-      </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Marital status</mat-label>
-        <mat-select>
-          <mat-option value="">Select marital status</mat-option>
-          <mat-option value="single">Single</mat-option>
-          <mat-option value="maried">Married</mat-option>
-          <mat-option value="widowed">Widowed</mat-option>
-          <mat-option value="separated">Separated</mat-option>
-          <mat-option value="divorced">Divorced</mat-option>
-          <mat-option value="unknown">Unknown</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
 
-  <div class="row" style="text-align: left;">
-    <h4><strong>Job details </strong></h4>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Package in rupees</mat-label>
-        <input matInput appNumberOnly>
-      </mat-form-field>
+    <div class="row" style="text-align: left;">
+      <h4><strong>Job details </strong></h4>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Package in Lacks per anum</mat-label>
+          <input matInput appNumberOnly formControlName="package">
+          <mat-error *ngIf="employeeForm.controls['package'].hasError('required')">Enter package in lacks per anum</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Date of Joining</mat-label>
+          <input matInput [matDatepicker]="dp4" disabled formControlName="doj">
+          <mat-error *ngIf="employeeForm.controls['doj'].hasError('required')">Enter date of joining</mat-error>
+          <mat-datepicker-toggle matSuffix [for]="dp4"></mat-datepicker-toggle>
+          <mat-datepicker #dp4 disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Select Role</mat-label>
+          <mat-select formControlName="role">
+            <mat-option *ngFor="let role of rolesArray" [value]="role.id">{{role.roleName}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="employeeForm.controls['role'].hasError('required')">Select employee role</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Select department</mat-label>
+          <mat-select formControlName="department">
+            <mat-option *ngFor="let department of departmentArray" [value]="department.id">{{department.departmentName}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="employeeForm.controls['department'].hasError('required')">Select employee department</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Select Designation</mat-label>
+          <mat-select formControlName="designation">
+            <mat-option *ngFor="let designation of designationArray" [value]="designation.id">
+              {{designation.designationName}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="employeeForm.controls['designation'].hasError('required')">Select employee designation</mat-error>
+        </mat-form-field>
+      </div>
     </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Date of Joining</mat-label>
-        <input matInput [matDatepicker]="dp4" disabled>
-        <mat-datepicker-toggle matSuffix [for]="dp4"></mat-datepicker-toggle>
-        <mat-datepicker #dp4 disabled="false"></mat-datepicker>
-      </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Select Role</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let role of rolesArray" [value]="role.id">{{role.roleName}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Select department</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let department of departmentArray" [value]="department.id">{{department.departmentName}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Select Designation</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let designation of designationArray" [value]="designation.id">
-            {{designation.designationName}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
 
-  <div class="row" style="text-align: left;">
-    <h4><strong>Contact details </strong></h4>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Personal email id</mat-label>
-        <input matInput type="email">
-      </mat-form-field>
+    <div class="row" style="text-align: left;">
+      <h4><strong>Contact details </strong></h4>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Personal email id</mat-label>
+          <input matInput type="email" formControlName="personalEmail">
+          <mat-error *ngIf="employeeForm.controls['personalEmail'].hasError('required')">Enter personal email id</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Personal phone</mat-label>
+          <input matInput type="tel" formControlName="personalPhone">
+          <mat-error *ngIf="employeeForm.controls['personalPhone'].hasError('required')">Enter personal phone</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Official email id</mat-label>
+          <input matInput type="email" formControlName="officialEmail">
+          <mat-error *ngIf="employeeForm.controls['officialEmail'].hasError('required')">Enter official email id</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Official phone</mat-label>
+          <input matInput type="tel" formControlName="officialPhone">
+          <mat-error *ngIf="employeeForm.controls['officialPhone'].hasError('required')">Enter official phone number</mat-error>
+        </mat-form-field>
+      </div>
     </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Personal phone</mat-label>
-        <input matInput type="tel">
-      </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Official email id</mat-label>
-        <input matInput type="email">
-      </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Official phone</mat-label>
-        <input matInput type="tel">
-      </mat-form-field>
-    </div>
-  </div>
 
-  <div class="row" style="text-align: left;">
-    <h4><strong>Emergency Contact details </strong></h4>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Contact name</mat-label>
-        <input matInput appTitleCase>
-      </mat-form-field>
+    <div class="row" style="text-align: left;">
+      <h4><strong>Emergency Contact details </strong></h4>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Contact name</mat-label>
+          <input matInput appTitleCase formControlName="emergency_name">
+          <mat-error *ngIf="employeeForm.controls['emergency_name'].hasError('required')">Enter emergency contact name</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Relationship</mat-label>
+          <mat-select formControlName="emergency_relationship">
+            <mat-option value="">Select Relationship</mat-option>
+            <mat-option value="father">Father</mat-option>
+            <mat-option value="mother">Mother</mat-option>
+            <mat-option value="spouse">Spouse</mat-option>
+            <mat-option value="brother">Brother</mat-option>
+            <mat-option value="sister">Sister</mat-option>
+            <mat-option value="son">Son</mat-option>
+            <mat-option value="daughter">Daughter</mat-option>
+            <mat-option value="fatherinlaw">Father in-law</mat-option>
+            <mat-option value="motherinlaw">Mother in-law</mat-option>
+            <mat-option value="nephew">Nephew</mat-option>
+            <mat-option value="uncle">Uncle</mat-option>
+            <mat-option value="aunt">Aunt</mat-option>
+            <mat-option value="grandfather">Grandfather</mat-option>
+            <mat-option value="grandmother">Grandmother</mat-option>
+            <mat-option value="others">Others</mat-option>
+          </mat-select>
+          <mat-error *ngIf="employeeForm.controls['emergency_relationship'].hasError('required')">Select emergency contact relation</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Phone number</mat-label>
+          <input matInput type="tel" formControlName="emergency_phone">
+          <mat-error *ngIf="employeeForm.controls['emergency_phone'].hasError('required')">Enter emergency phone number</mat-error>
+        </mat-form-field>
+      </div>
     </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Relationship</mat-label>
-        <mat-select>
-          <mat-option value="">Select Relationship</mat-option>
-          <mat-option value="father">Father</mat-option>
-          <mat-option value="mother">Mother</mat-option>
-          <mat-option value="spouse">Spouse</mat-option>
-          <mat-option value="brother">Brother</mat-option>
-          <mat-option value="sister">Sister</mat-option>
-          <mat-option value="son">Son</mat-option>
-          <mat-option value="daughter">Daughter</mat-option>
-          <mat-option value="fatherinlaw">Father in-law</mat-option>
-          <mat-option value="motherinlaw">Mother in-law</mat-option>
-          <mat-option value="nephew">Nephew</mat-option>
-          <mat-option value="uncle">Uncle</mat-option>
-          <mat-option value="aunt">Aunt</mat-option>
-          <mat-option value="grandfather">Grandfather</mat-option>
-          <mat-option value="grandmother">Grandmother</mat-option>
-          <mat-option value="others">Others</mat-option>
-        </mat-select>
-      </mat-form-field>
+    <div class="row" style="text-align: left;">
+      <h4><strong>Bank details </strong></h4>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Account number</mat-label>
+          <input matInput type="number" appNumberOnly formControlName="bank_accno">
+          <mat-error *ngIf="employeeForm.controls['bank_accno'].hasError('required')">Enter bank account number</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Account holder name</mat-label>
+          <input matInput appTitleCase formControlName="bank_accname">
+          <mat-error *ngIf="employeeForm.controls['bank_accname'].hasError('required')">Enter bank account name</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>IFSC Code</mat-label>
+          <input matInput formControlName="bank_accifsc">
+          <mat-error *ngIf="employeeForm.controls['bank_accifsc'].hasError('required')">Enter bank IFSC code</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Branch</mat-label>
+          <input matInput appTitleCase formControlName="bank_branch">
+          <mat-error *ngIf="employeeForm.controls['bank_branch'].hasError('required')">Enter bank branch</mat-error>
+        </mat-form-field>
+      </div>
     </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Phone number</mat-label>
-        <input matInput type="tel">
-      </mat-form-field>
-    </div>
-  </div>
-  <div class="row" style="text-align: left;">
-    <h4><strong>Bank details </strong></h4>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Account number</mat-label>
-        <input matInput type="number" appNumberOnly>
-      </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Account holder name</mat-label>
-        <input matInput appTitleCase>
-      </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>IFSC Code</mat-label>
-        <input matInput>
-      </mat-form-field>
-    </div>
-    <div class="col-sm-4">
-      <mat-form-field class="example-full-width">
-        <mat-label>Branch</mat-label>
-        <input matInput appTitleCase>
-      </mat-form-field>
-    </div>
-  </div>
+  </form>
   <div style="text-align: right;">
-    <button mat-button>
+    <button mat-button routerLink="../employees">
       <mat-icon>close</mat-icon>Cancel
     </button>
-    <button mat-raised-button color="primary">
+    <button mat-raised-button color="primary" (click)="saveEmployee()">
       <mat-icon>save</mat-icon>Save
     </button>
   </div>

@@ -44,6 +44,8 @@ import { DeleteConfirmationComponent } from './partials/delete-confirmation/dele
 import { TitleCaseDirective } from './core/Directives/title-case.directive';
 import { NumberOnlyDirective } from './core/Directives/number-only.directive';
 import { CapialiseTextDirective } from './core/Directives/capialise-text.directive';
+import { BranchesListComponent } from './components/Branches/branches-list/branches-list.component';
+import { BranchesCRUDComponent } from './components/Branches/branches-crud/branches-crud.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { CapialiseTextDirective } from './core/Directives/capialise-text.directi
     DeleteConfirmationComponent,
     TitleCaseDirective,
     NumberOnlyDirective,
-    CapialiseTextDirective
+    CapialiseTextDirective,
+    BranchesListComponent,
+    BranchesCRUDComponent
   ],
   exports: [
     AngularFireAuthModule

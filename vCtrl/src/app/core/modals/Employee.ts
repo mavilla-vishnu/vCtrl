@@ -7,7 +7,7 @@ export interface EmployeeModal {
     dob: string,
     profileUrl: string,
     blood_group: string,
-    marital_status: boolean,
+    marital_status: string,
     aadhar_number: string,
     pan_number: string,
 
