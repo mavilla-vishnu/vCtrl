@@ -38,4 +38,14 @@ export class DataProviderService {
       })
     });
   }
+
+  getBranches(){
+    return new Promise((resolve, reject) => {
+      this.afs.collection('branches').get().subscribe(response => {
+        resolve(response.docs.map(doc => doc.data()));
+      }, error => {
+        reject(error);
+      })
+    });
+  }
 }

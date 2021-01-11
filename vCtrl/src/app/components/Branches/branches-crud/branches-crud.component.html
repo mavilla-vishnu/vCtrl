@@ -1,1 +1,42 @@
-<p>branches-crud works!</p>
+<h1>{{title}}</h1>
+<form [formGroup]="branchForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>Branch name</mat-label>
+    <input matInput formControlName="branchName">
+    <mat-error
+      *ngIf="branchForm.controls['branchName'].hasError('required')&&branchForm.controls['branchName'].touched||branchForm.controls['branchName'].dirty">
+      Enter valid Branch name</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Description</mat-label>
+    <input matInput formControlName="branchhDescription">
+    <mat-error
+      *ngIf="branchForm.controls['branchhDescription'].hasError('required')&&branchForm.controls['branchhDescription'].touched||branchForm.controls['branchhDescription'].dirty">
+      Enter valid Branch name</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>GSTIN</mat-label>
+    <input matInput formControlName="branchGstin">
+    <mat-error
+      *ngIf="branchForm.controls['branchGstin'].hasError('required')&&branchForm.controls['branchGstin'].touched||branchForm.controls['branchGstin'].dirty">
+      Enter valid Branch name</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="branchEmail">
+    <mat-error
+      *ngIf="branchForm.controls['branchEmail'].hasError('required')&&branchForm.controls['branchEmail'].touched||branchForm.controls['branchEmail'].dirty">
+      Enter valid Branch name</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Contact</mat-label>
+    <input matInput formControlName="branchContact">
+    <mat-error
+      *ngIf="branchForm.controls['branchContact'].hasError('required')&&branchForm.controls['branchContact'].touched||branchForm.controls['branchContact'].dirty">
+      Enter valid Branch name</mat-error>
+  </mat-form-field>
+</form>
+<div>
+  <button mat-raised-button color="primary" class="float-right" (click)="saveBranch()">Save</button>
+  <button mat-button class="float-right" (click)="dismiss()">Cancel</button>
+</div>

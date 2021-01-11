@@ -19,12 +19,13 @@ export class HomeComponent implements OnInit {
   subMenu: SideMenuModal[] = [
     {
       title: "Organisation",
-      icon: "building",
+      icon: "account_balance",
       url: "",
       children: [
         { title: "Roles", url: "roles" },
         { title: "Departments", url: "departments" },
-        { title: "Designations", url: "designations" }
+        { title: "Designations", url: "designations" },
+        { title: "Branches", url: "branches" }
       ],
       isExpanded: false,
       showSubmenu: false,
@@ -34,7 +35,9 @@ export class HomeComponent implements OnInit {
       title: "Employees",
       icon: "person",
       url: "/employees",
-      children: [],
+      children: [
+        { title: "Employees", url: "employees" },
+      ],
       isExpanded: false,
       showSubmenu: false,
       isShowing: true,

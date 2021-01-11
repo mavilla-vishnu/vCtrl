@@ -128,6 +128,16 @@
           <mat-error *ngIf="employeeForm.controls['designation'].hasError('required')">Select employee designation</mat-error>
         </mat-form-field>
       </div>
+      <div class="col-sm-4">
+        <mat-form-field class="example-full-width">
+          <mat-label>Select Branch</mat-label>
+          <mat-select formControlName="branch">
+            <mat-option *ngFor="let branch of branchArray" [value]="branch.id">
+              {{branch.branchName}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="employeeForm.controls['branch'].hasError('required')">Select employee branch</mat-error>
+        </mat-form-field>
+      </div>
     </div>
 
     <div class="row" style="text-align: left;">
@@ -236,7 +246,7 @@
     </div>
   </form>
   <div style="text-align: right;">
-    <button mat-button routerLink="../employees">
+    <button mat-button (click)="cancel()">
       <mat-icon>close</mat-icon>Cancel
     </button>
     <button mat-raised-button color="primary" (click)="saveEmployee()">

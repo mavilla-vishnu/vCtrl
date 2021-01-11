@@ -9,6 +9,8 @@ import { RoleListComponent } from './components/Roles/role-list/role-list.compon
 import { RoleCrudComponent } from './components/Roles/role-crud/role-crud.component';
 import { DepartmentListComponent } from './components/Departments/department-list/department-list.component';
 import { DesignationListComponent } from './components/Designations/designation-list/designation-list.component';
+import { BranchesListComponent } from './components/Branches/branches-list/branches-list.component';
+import { BranchesCRUDComponent } from './components/Branches/branches-crud/branches-crud.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['home']);
@@ -26,6 +28,9 @@ const routes: Routes = [
       { path: "department/:id", component: RoleListComponent },
       { path: "designations", component: DesignationListComponent },
       { path: "designation/:id", component: RoleListComponent },
+      { path: "branches", component: BranchesListComponent },
+      { path: "branch/:id", component: BranchesCRUDComponent },
+      { path: "branch", component: BranchesCRUDComponent }
     ]
   },
   { path: "login", component: LoginComponent, data: { authGuardPipe: redirectLoggedInToItems } }

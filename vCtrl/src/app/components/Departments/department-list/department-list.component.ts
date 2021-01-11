@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { DepartmentModal } from 'src/app/core/modals/DepartmentModal';
 import { RoleModal } from 'src/app/core/modals/RoleModal/RoleModal';
 import { LoadingService } from 'src/app/core/Services/loading.service';
 import { DeleteConfirmationComponent } from 'src/app/partials/delete-confirmation/delete-confirmation.component';
@@ -16,9 +17,9 @@ import { DepartmentCrudComponent } from '../department-crud/department-crud.comp
   styleUrls: ['./department-list.component.scss']
 })
 export class DepartmentListComponent implements OnInit {
-  departmentArray: RoleModal[] = [];
+  departmentArray: DepartmentModal[] = [];
   displayedColumns: string[] = ['departmentName', 'departmentDescription', 'actons'];
-  dataSource: MatTableDataSource<RoleModal>;
+  dataSource: MatTableDataSource<DepartmentModal>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -63,7 +64,7 @@ export class DepartmentListComponent implements OnInit {
     });
   }
 
-  deleteDepartment(department: RoleModal) {
+  deleteDepartment(department: DepartmentModal) {
     const dialogRef = this.dialog.open(DeleteConfirmationComponent, {
       width: '450px'
     });
