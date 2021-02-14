@@ -11,6 +11,7 @@ import { DepartmentListComponent } from './components/Departments/department-lis
 import { DesignationListComponent } from './components/Designations/designation-list/designation-list.component';
 import { BranchesListComponent } from './components/Branches/branches-list/branches-list.component';
 import { BranchesCRUDComponent } from './components/Branches/branches-crud/branches-crud.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['home']);
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   {
     path: "home", component: HomeComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }, children: [
+      {path: "", component: DashboardComponent},
       { path: "employees", component: EmployeesListComponent },
       { path: "employee", component: EmployeesCRUDComponent },
       { path: "employee/:id", component: EmployeesCRUDComponent },

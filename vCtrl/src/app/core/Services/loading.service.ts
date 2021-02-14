@@ -11,7 +11,7 @@ export class LoadingService {
 
   presentLoading(message: string) {
     this.dialogRef = this.dialog.open(LoadingComponent, {
-      width: '250px',
+      width: '300px',
       data: { message: message }
     });
   }

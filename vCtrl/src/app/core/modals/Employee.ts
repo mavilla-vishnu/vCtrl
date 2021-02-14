@@ -4,14 +4,14 @@ export interface EmployeeModal {
 
     first_name: string,
     last_name: string,
-    dob: string,
+    dob: any,
     profileUrl: string,
     blood_group: string,
     marital_status: string,
     aadhar_number: string,
     pan_number: string,
 
-    doj: string,
+    doj: any,
     department: string,
     role: string,
     branch_id: string,

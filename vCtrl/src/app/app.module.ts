@@ -46,6 +46,9 @@ import { NumberOnlyDirective } from './core/Directives/number-only.directive';
 import { CapialiseTextDirective } from './core/Directives/capialise-text.directive';
 import { BranchesListComponent } from './components/Branches/branches-list/branches-list.component';
 import { BranchesCRUDComponent } from './components/Branches/branches-crud/branches-crud.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { PurchaseOrderComponent } from './components/Accounts/purchase-order/purchase-order.component';
+import { SalesOrderComponent } from './components/Accounts/sales-order/sales-order.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,10 @@ import { BranchesCRUDComponent } from './components/Branches/branches-crud/branc
     NumberOnlyDirective,
     CapialiseTextDirective,
     BranchesListComponent,
-    BranchesCRUDComponent
+    BranchesCRUDComponent,
+    DashboardComponent,
+    PurchaseOrderComponent,
+    SalesOrderComponent
   ],
   exports: [
     AngularFireAuthModule

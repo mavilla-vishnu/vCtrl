@@ -35,6 +35,14 @@ export class DepartmentListComponent implements OnInit {
     this.loadingService.presentLoading("Fetching departments...");
     this.afs.collection("departments").valueChanges().subscribe((response: any) => {
       this.departmentArray = response;
+      this.departmentArray.forEach((dept:any)=>{
+        if(dept.departmentName.split(" ").length>2){
+          var nameArray=dept.departmentName.split(" ");
+          dept.thumbnail=nameArray[0].charAt(0).toUpperCase()+nameArray[1].charAt(0).toUpperCase();
+        }else{
+          dept.thumbnail=dept.departmentName.charAt(0).toUpperCase()+dept.departmentName.charAt(1).toUpperCase();
+        }
+      });
       this.dataSource = new MatTableDataSource(this.departmentArray);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

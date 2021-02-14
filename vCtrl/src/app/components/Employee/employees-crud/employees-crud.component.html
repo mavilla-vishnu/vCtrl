@@ -85,9 +85,9 @@
       <h4><strong>Job details </strong></h4>
       <div class="col-sm-4">
         <mat-form-field class="example-full-width">
-          <mat-label>Package in Lacks per anum</mat-label>
-          <input matInput appNumberOnly formControlName="package">
-          <mat-error *ngIf="employeeForm.controls['package'].hasError('required')">Enter package in lacks per anum</mat-error>
+          <mat-label>Package in rupees</mat-label>
+          <input matInput formControlName="package">
+          <mat-error *ngIf="employeeForm.controls['package'].hasError('required')">Enter package in rupees</mat-error>
         </mat-form-field>
       </div>
       <div class="col-sm-4">
@@ -232,7 +232,7 @@
       <div class="col-sm-4">
         <mat-form-field class="example-full-width">
           <mat-label>IFSC Code</mat-label>
-          <input matInput formControlName="bank_accifsc">
+          <input matInput formControlName="bank_accifsc" appCapialiseText>
           <mat-error *ngIf="employeeForm.controls['bank_accifsc'].hasError('required')">Enter bank IFSC code</mat-error>
         </mat-form-field>
       </div>

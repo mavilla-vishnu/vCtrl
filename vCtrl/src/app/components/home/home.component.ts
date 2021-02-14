@@ -42,7 +42,19 @@ export class HomeComponent implements OnInit {
       showSubmenu: false,
       isShowing: true,
       showSubSubMenu: true
-    },
+    },{
+      title: "Accounts",
+      icon: "monetization_on",
+      url: "",
+      children:[
+        {title: "Purchase Order", url: ""},
+        {title: "Sale Order", url: ""},
+      ],
+      isExpanded: false,
+      showSubmenu: false,
+      isShowing: true,
+      showSubSubMenu: true
+    }
   ];
 
   constructor(private auth: AngularFireAuth, private router: Router, private afs: AngularFirestore) { }

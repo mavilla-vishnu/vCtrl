@@ -15,7 +15,7 @@ import { LoadingService } from 'src/app/core/Services/loading.service';
 export class BranchesCRUDComponent implements OnInit {
   branchForm: FormGroup;
   branch: BranchModal;
-  title= "Add Branch";
+  title = "Add Branch";
   constructor(private snackbar: MatSnackBar, private afs: AngularFirestore, public dialogRef: MatDialogRef<BranchesCRUDComponent>,
     @Inject(MAT_DIALOG_DATA) public data: BranchModal,
     private loadingService: LoadingService) { }
@@ -23,21 +23,21 @@ export class BranchesCRUDComponent implements OnInit {
   ngOnInit(): void {
     this.branchForm = new FormGroup({
       branchName: new FormControl('', [Validators.required]),
-      branchGstin: new FormControl(''),
+      branchGstin: new FormControl('', [Validators.pattern("^([0][1-9]|[1-2][0-9]|[3][0-7])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$")]),
       branchhDescription: new FormControl(''),
       branchEmail: new FormControl(''),
       branchContact: new FormControl('')
     });
     if (this.data != undefined) {
-      this.title="Update Branch";
+      this.title = "Update Branch";
       this.branch = this.data;
       this.branchForm.controls["branchName"].setValue(this.branch.branchName);
       this.branchForm.controls["branchGstin"].setValue(this.branch.branchGstin);
       this.branchForm.controls["branchhDescription"].setValue(this.branch.branchhDescription);
       this.branchForm.controls["branchEmail"].setValue(this.branch.branchEmail);
       this.branchForm.controls["branchContact"].setValue(this.branch.branchContact);
-    }else{
-      this.title="Add Branch";
+    } else {
+      this.title = "Add Branch";
     }
   }
 

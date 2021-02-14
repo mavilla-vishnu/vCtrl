@@ -79,16 +79,15 @@ export class EmployeesCRUDComponent implements OnInit {
     if (this.emp_doc_id != undefined) {
       this.afs.collection("employees").doc(this.emp_doc_id).get().subscribe((response: any) => {
         this.employeeData = response.data();
-        console.log(this.employeeData);
         this.employeeForm.controls["firstName"].setValue(this.employeeData.first_name);
         this.employeeForm.controls["lastName"].setValue(this.employeeData.last_name);
-        this.employeeForm.controls["dob"].setValue(this.employeeData.dob);
+        this.employeeForm.controls["dob"].setValue(new Date(this.employeeData.dob.toDate()));
         this.employeeForm.controls["bloodGroup"].setValue(this.employeeData.blood_group);
         this.employeeForm.controls["aadharNo"].setValue(this.employeeData.aadhar_number);
         this.employeeForm.controls["panNo"].setValue(this.employeeData.pan_number);
         this.employeeForm.controls["maritalStatus"].setValue(this.employeeData.marital_status);
         this.employeeForm.controls["package"].setValue(this.employeeData.package);
-        this.employeeForm.controls["doj"].setValue(this.employeeData.doj);
+        this.employeeForm.controls["doj"].setValue(new Date(this.employeeData.doj.toDate()));
         this.employeeForm.controls["role"].setValue(this.employeeData.role);
         this.employeeForm.controls["department"].setValue(this.employeeData.department);
         this.employeeForm.controls["designation"].setValue(this.employeeData.designation);
@@ -113,55 +112,98 @@ export class EmployeesCRUDComponent implements OnInit {
       this.snackbar.open("Please enter valid data!", "OK", { duration: 3000 });
       return;
     }
-    var id = this.afs.createId();
-    var employee: EmployeeModal = {
-      id: id,
-      emp_id: this.emp_id,
+    if (this.emp_doc_id == undefined) {
+      var id = this.afs.createId();
+      var employee: EmployeeModal = {
+        id: id,
+        emp_id: this.emp_id,
 
-      first_name: this.employeeForm.controls["firstName"].value,
-      last_name: this.employeeForm.controls["lastName"].value,
-      dob: this.employeeForm.controls["dob"].value,
-      profileUrl: "",
-      blood_group: this.employeeForm.controls["bloodGroup"].value,
-      marital_status: this.employeeForm.controls["maritalStatus"].value,
-      aadhar_number: this.employeeForm.controls["aadharNo"].value,
-      pan_number: this.employeeForm.controls["panNo"].value,
+        first_name: this.employeeForm.controls["firstName"].value,
+        last_name: this.employeeForm.controls["lastName"].value,
+        dob: this.employeeForm.controls["dob"].value,
+        profileUrl: "",
+        blood_group: this.employeeForm.controls["bloodGroup"].value,
+        marital_status: this.employeeForm.controls["maritalStatus"].value,
+        aadhar_number: this.employeeForm.controls["aadharNo"].value,
+        pan_number: this.employeeForm.controls["panNo"].value,
 
-      doj: this.employeeForm.controls["doj"].value,
-      department: this.employeeForm.controls["department"].value,
-      role: this.employeeForm.controls["role"].value,
-      branch_id: this.employeeForm.controls["branch"].value,
-      designation: this.employeeForm.controls["designation"].value,
-      package: this.employeeForm.controls["package"].value,
+        doj: this.employeeForm.controls["doj"].value,
+        department: this.employeeForm.controls["department"].value,
+        role: this.employeeForm.controls["role"].value,
+        branch_id: this.employeeForm.controls["branch"].value,
+        designation: this.employeeForm.controls["designation"].value,
+        package: this.employeeForm.controls["package"].value,
 
-      personal_email: this.employeeForm.controls["personalEmail"].value,
-      personal_phone: this.employeeForm.controls["personalPhone"].value,
-      official_email: this.employeeForm.controls["officialEmail"].value,
-      official_phone: this.employeeForm.controls["officialPhone"].value,
+        personal_email: this.employeeForm.controls["personalEmail"].value,
+        personal_phone: this.employeeForm.controls["personalPhone"].value,
+        official_email: this.employeeForm.controls["officialEmail"].value,
+        official_phone: this.employeeForm.controls["officialPhone"].value,
 
-      emergency_name: this.employeeForm.controls["emergency_name"].value,
-      emergency_contact: this.employeeForm.controls["emergency_phone"].value,
-      emergency_relation: this.employeeForm.controls["emergency_relationship"].value,
+        emergency_name: this.employeeForm.controls["emergency_name"].value,
+        emergency_contact: this.employeeForm.controls["emergency_phone"].value,
+        emergency_relation: this.employeeForm.controls["emergency_relationship"].value,
 
-      bank_account_number: this.employeeForm.controls["bank_accno"].value,
-      bank_ifsc: this.employeeForm.controls["bank_accifsc"].value,
-      bank_branch: this.employeeForm.controls["bank_branch"].value,
-      bank_account_name: this.employeeForm.controls["bank_accname"].value
-    };
-    this.loader.presentLoading("Saving employee...");
-    this.afs.collection("employees").doc(id).set(employee).then(response => {
-      this.afs.collection("indexes").doc("emp_id").set({ emp_id: this.emp_id++ }).then(resp => {
-        this.loader.dismissLoading();
-        this.snackbar.open("Employee saved successfully!", "OK", { duration: 3000 });
-        this.cancel();
+        bank_account_number: this.employeeForm.controls["bank_accno"].value,
+        bank_ifsc: this.employeeForm.controls["bank_accifsc"].value,
+        bank_branch: this.employeeForm.controls["bank_branch"].value,
+        bank_account_name: this.employeeForm.controls["bank_accname"].value
+      };
+      this.loader.presentLoading("Saving employee...");
+      this.afs.collection("employees").doc(id).set(employee).then(response => {
+        this.afs.collection("indexes").doc("emp_id").set({ emp_id: this.emp_id++ }).then(resp => {
+          this.loader.dismissLoading();
+          this.snackbar.open("Employee saved successfully!", "OK", { duration: 3000 });
+          this.cancel();
+        });
+      }).catch(error => {
+        this.snackbar.open("Error saving employee....")
       });
-    }).catch(error => {
-      this.snackbar.open("Error saving employee....")
-    });
-  }
+    } else {
+      var employee: EmployeeModal = {
+        id: this.emp_doc_id,
+        emp_id: this.employeeData.emp_id,
 
-  exportExcel() {
+        first_name: this.employeeForm.controls["firstName"].value,
+        last_name: this.employeeForm.controls["lastName"].value,
+        dob: this.employeeForm.controls["dob"].value,
+        profileUrl: "",
+        blood_group: this.employeeForm.controls["bloodGroup"].value,
+        marital_status: this.employeeForm.controls["maritalStatus"].value,
+        aadhar_number: this.employeeForm.controls["aadharNo"].value,
+        pan_number: this.employeeForm.controls["panNo"].value,
 
+        doj: this.employeeForm.controls["doj"].value,
+        department: this.employeeForm.controls["department"].value,
+        role: this.employeeForm.controls["role"].value,
+        branch_id: this.employeeForm.controls["branch"].value,
+        designation: this.employeeForm.controls["designation"].value,
+        package: this.employeeForm.controls["package"].value,
+
+        personal_email: this.employeeForm.controls["personalEmail"].value,
+        personal_phone: this.employeeForm.controls["personalPhone"].value,
+        official_email: this.employeeForm.controls["officialEmail"].value,
+        official_phone: this.employeeForm.controls["officialPhone"].value,
+
+        emergency_name: this.employeeForm.controls["emergency_name"].value,
+        emergency_contact: this.employeeForm.controls["emergency_phone"].value,
+        emergency_relation: this.employeeForm.controls["emergency_relationship"].value,
+
+        bank_account_number: this.employeeForm.controls["bank_accno"].value,
+        bank_ifsc: this.employeeForm.controls["bank_accifsc"].value,
+        bank_branch: this.employeeForm.controls["bank_branch"].value,
+        bank_account_name: this.employeeForm.controls["bank_accname"].value
+      };
+      this.loader.presentLoading("Updating employee...");
+      this.afs.collection("employees").doc(this.emp_doc_id).set(employee).then(response => {
+        this.afs.collection("indexes").doc("emp_id").set({ emp_id: this.emp_id++ }).then(resp => {
+          this.loader.dismissLoading();
+          this.snackbar.open("Employee updated successfully!", "OK", { duration: 3000 });
+          this.cancel();
+        });
+      }).catch(error => {
+        this.snackbar.open("Error updated employee....")
+      });
+    }
   }
 
   cancel() {

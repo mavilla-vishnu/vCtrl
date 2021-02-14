@@ -18,8 +18,8 @@
     <mat-label>GSTIN</mat-label>
     <input matInput formControlName="branchGstin">
     <mat-error
-      *ngIf="branchForm.controls['branchGstin'].hasError('required')&&branchForm.controls['branchGstin'].touched||branchForm.controls['branchGstin'].dirty">
-      Enter valid Branch name</mat-error>
+      *ngIf="branchForm.controls['branchGstin'].hasError('pattern')&&branchForm.controls['branchGstin'].touched||branchForm.controls['branchGstin'].dirty">
+      Enter valid GSTIN</mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
     <mat-label>Email</mat-label>

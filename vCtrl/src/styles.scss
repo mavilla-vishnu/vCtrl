@@ -93,3 +93,16 @@ body {
 .float-right {
   float: right;
 }
+
+.thumbnail {
+  border: none;
+  border-radius: 50px;
+  width: fit-content;
+  padding: 12px;
+  background: #ff6600;
+  color: white;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin: auto;
+  display: inherit;
+}
