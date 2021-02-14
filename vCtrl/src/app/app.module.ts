@@ -49,6 +49,9 @@ import { BranchesCRUDComponent } from './components/Branches/branches-crud/branc
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PurchaseOrderComponent } from './components/Accounts/purchase-order/purchase-order.component';
 import { SalesOrderComponent } from './components/Accounts/sales-order/sales-order.component';
+import { MaterialsComponent } from './components/Miscellaneous/materials/materials.component';
+import { VendorsComponent } from './components/Miscellaneous/vendors/vendors.component';
+import { CustomersComponent } from './components/Miscellaneous/customers/customers.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,10 @@ import { SalesOrderComponent } from './components/Accounts/sales-order/sales-ord
     BranchesCRUDComponent,
     DashboardComponent,
     PurchaseOrderComponent,
-    SalesOrderComponent
+    SalesOrderComponent,
+    MaterialsComponent,
+    VendorsComponent,
+    CustomersComponent
   ],
   exports: [
     AngularFireAuthModule

@@ -47,8 +47,21 @@ export class HomeComponent implements OnInit {
       icon: "monetization_on",
       url: "",
       children:[
-        {title: "Purchase Order", url: ""},
-        {title: "Sale Order", url: ""},
+        {title: "Purchase Order", url: "po"},
+        {title: "Sale Order", url: "so"},
+      ],
+      isExpanded: false,
+      showSubmenu: false,
+      isShowing: true,
+      showSubSubMenu: true
+    }, {
+      title: "Miscellaneous",
+      icon: "bubble_chart",
+      url: "",
+      children:[
+        {title: "Materials", url: "po"},
+        {title: "Vendors", url: "so"},
+        {title : "Customers", url: "customers"}
       ],
       isExpanded: false,
       showSubmenu: false,

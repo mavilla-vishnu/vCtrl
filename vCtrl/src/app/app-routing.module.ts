@@ -12,6 +12,8 @@ import { DesignationListComponent } from './components/Designations/designation-
 import { BranchesListComponent } from './components/Branches/branches-list/branches-list.component';
 import { BranchesCRUDComponent } from './components/Branches/branches-crud/branches-crud.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { PurchaseOrderComponent } from './components/Accounts/purchase-order/purchase-order.component';
+import { SalesOrderComponent } from './components/Accounts/sales-order/sales-order.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['home']);
@@ -32,7 +34,9 @@ const routes: Routes = [
       { path: "designation/:id", component: RoleListComponent },
       { path: "branches", component: BranchesListComponent },
       { path: "branch/:id", component: BranchesCRUDComponent },
-      { path: "branch", component: BranchesCRUDComponent }
+      { path: "branch", component: BranchesCRUDComponent },
+      { path: "po", component: PurchaseOrderComponent},
+      { path: "so", component: SalesOrderComponent}
     ]
   },
   { path: "login", component: LoginComponent, data: { authGuardPipe: redirectLoggedInToItems } }
