@@ -1,0 +1,25 @@
+<h1>Add Material</h1>
+
+<form [formGroup]="materialForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>Material name</mat-label>
+    <input matInput formControlName="name" appTitleCase>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Material unit</mat-label>
+    <input matInput formControlName="unit" style="text-transform: uppercase;">
+    <mat-hint>Unit entered here is diaplayed as is in excel</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Material Price in ₹</mat-label>
+    <input numericDecimal decimals="2" matInput placeholder="0.00" formControlName="price">
+    <mat-hint>Decimal value with rupees and paise</mat-hint>
+  </mat-form-field>
+</form>
+
+<div style="margin-top: 12px; text-align: right;">
+  <button mat-button color="primary" (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="saveMaterial()">Save</button>
+</div>

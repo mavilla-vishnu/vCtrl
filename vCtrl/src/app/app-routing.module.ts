@@ -14,6 +14,9 @@ import { BranchesCRUDComponent } from './components/Branches/branches-crud/branc
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PurchaseOrderComponent } from './components/Accounts/purchase-order/purchase-order.component';
 import { SalesOrderComponent } from './components/Accounts/sales-order/sales-order.component';
+import { MaterialsComponent } from './components/Miscellaneous/materials/materials.component';
+import { VendorsComponent } from './components/Miscellaneous/vendors/vendors.component';
+import { CustomersComponent } from './components/Miscellaneous/customers/customers.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['home']);
@@ -22,7 +25,7 @@ const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   {
     path: "home", component: HomeComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }, children: [
-      {path: "", component: DashboardComponent},
+      { path: "", component: DashboardComponent },
       { path: "employees", component: EmployeesListComponent },
       { path: "employee", component: EmployeesCRUDComponent },
       { path: "employee/:id", component: EmployeesCRUDComponent },
@@ -35,8 +38,11 @@ const routes: Routes = [
       { path: "branches", component: BranchesListComponent },
       { path: "branch/:id", component: BranchesCRUDComponent },
       { path: "branch", component: BranchesCRUDComponent },
-      { path: "po", component: PurchaseOrderComponent},
-      { path: "so", component: SalesOrderComponent}
+      { path: "po", component: PurchaseOrderComponent },
+      { path: "so", component: SalesOrderComponent },
+      { path: "materials", component: MaterialsComponent },
+      { path: "vendors", component: VendorsComponent },
+      { path: "customers", component: CustomersComponent }
     ]
   },
   { path: "login", component: LoginComponent, data: { authGuardPipe: redirectLoggedInToItems } }

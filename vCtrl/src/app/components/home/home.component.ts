@@ -59,8 +59,8 @@ export class HomeComponent implements OnInit {
       icon: "bubble_chart",
       url: "",
       children:[
-        {title: "Materials", url: "po"},
-        {title: "Vendors", url: "so"},
+        {title: "Materials", url: "materials"},
+        {title: "Vendors", url: "vendors"},
         {title : "Customers", url: "customers"}
       ],
       isExpanded: false,
