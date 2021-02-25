@@ -1,0 +1,48 @@
+<h1>Add Vendor</h1>
+
+<form [formGroup]="vendorForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>Vendor name</mat-label>
+    <input matInput appTitleCase formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Vendor CIN number</mat-label>
+    <input matInput appCapialiseText formControlName="cin_no">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Vendor GSTIN</mat-label>
+    <input matInput appCapialiseText formControlName="gst_no">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Address line 1</mat-label>
+    <input matInput formControlName="addr1">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Address line 2</mat-label>
+    <input matInput formControlName="addr2">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>City</mat-label>
+    <input matInput appTitleCase formControlName="city">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>State</mat-label>
+    <input matInput appTitleCase formControlName="state">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Pincode</mat-label>
+    <input matInput maxlength=6 formControlName="pincode">
+  </mat-form-field>
+</form>
+
+<div style="text-align: right;">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="save()">Save</button>
+</div>

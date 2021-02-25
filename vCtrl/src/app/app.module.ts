@@ -54,6 +54,7 @@ import { VendorsComponent } from './components/Miscellaneous/vendors/vendors.com
 import { CustomersComponent } from './components/Miscellaneous/customers/customers.component';
 import { MaterialCrudComponent } from './components/Miscellaneous/materials/material-crud/material-crud.component';
 import { NumericDecimalDirective } from './core/Directives/numericdecimal.directive';
+import { VendorCrudComponent } from './components/Miscellaneous/vendors/vendor-crud/vendor-crud.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { NumericDecimalDirective } from './core/Directives/numericdecimal.direct
     VendorsComponent,
     CustomersComponent,
     MaterialCrudComponent,
-    NumericDecimalDirective
+    NumericDecimalDirective,
+    VendorCrudComponent
   ],
   exports: [
     AngularFireAuthModule

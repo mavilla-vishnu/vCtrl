@@ -52,8 +52,16 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
   }
 
   editMaterial(i) {
-    
+    const dialogRef = this.dialog.open(MaterialCrudComponent, {
+      width: '600px',
+      data: this.materials[i]
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.added) {
+        this.getMaterials();
+      }
+    });
   }
 
   deleteMaterial(i) {
