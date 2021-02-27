@@ -55,6 +55,10 @@ import { CustomersComponent } from './components/Miscellaneous/customers/custome
 import { MaterialCrudComponent } from './components/Miscellaneous/materials/material-crud/material-crud.component';
 import { NumericDecimalDirective } from './core/Directives/numericdecimal.directive';
 import { VendorCrudComponent } from './components/Miscellaneous/vendors/vendor-crud/vendor-crud.component';
+import { CustomerCrudComponent } from './components/Miscellaneous/customers/customer-crud/customer-crud.component';
+import { PurchaseorderCrudComponent } from './components/Accounts/purchase-order/purchaseorder-crud/purchaseorder-crud.component';
+import { PurchaseorderAddMaterialComponent } from './components/Accounts/purchase-order/purchaseorder-add-material/purchaseorder-add-material.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -84,7 +88,10 @@ import { VendorCrudComponent } from './components/Miscellaneous/vendors/vendor-c
     CustomersComponent,
     MaterialCrudComponent,
     NumericDecimalDirective,
-    VendorCrudComponent
+    VendorCrudComponent,
+    CustomerCrudComponent,
+    PurchaseorderCrudComponent,
+    PurchaseorderAddMaterialComponent
   ],
   exports: [
     AngularFireAuthModule
@@ -116,7 +123,8 @@ import { VendorCrudComponent } from './components/Miscellaneous/vendors/vendor-c
     MatSelectModule,
     MatSlideToggleModule,
     AngularFirestoreModule,
-    MatMenuModule
+    MatMenuModule,
+    MatAutocompleteModule
   ],
   providers: [
     AngularFireAuthGuard,

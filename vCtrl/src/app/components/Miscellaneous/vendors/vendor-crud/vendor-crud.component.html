@@ -1,4 +1,4 @@
-<h1>Add Vendor</h1>
+<h1>{{data==null?"Add Vendor": "Update Vendor"}}</h1>
 
 <form [formGroup]="vendorForm">
   <mat-form-field class="example-full-width">
@@ -44,5 +44,5 @@
 
 <div style="text-align: right;">
   <button mat-button (click)="cancel()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="save()">Save</button>
+  <button mat-raised-button color="primary" (click)="save()">{{data==null?'Save': 'Update'}}</button>
 </div>

@@ -1,6 +1,7 @@
 export interface MaterialModal {
-    name: String,
+    name: string,
     unit: string,
     price: number,
-    id?: string
+    id?: string,
+    quantity?: number
 }

@@ -24,9 +24,9 @@ export class BranchesCRUDComponent implements OnInit {
     this.branchForm = new FormGroup({
       branchName: new FormControl('', [Validators.required]),
       branchGstin: new FormControl('', [Validators.pattern("^([0][1-9]|[1-2][0-9]|[3][0-7])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$")]),
-      branchhDescription: new FormControl(''),
-      branchEmail: new FormControl(''),
-      branchContact: new FormControl('')
+      branchhDescription: new FormControl('', [Validators.required]),
+      branchEmail: new FormControl('', [Validators.required]),
+      branchContact: new FormControl('', [Validators.required])
     });
     if (this.data != undefined) {
       this.title = "Update Branch";

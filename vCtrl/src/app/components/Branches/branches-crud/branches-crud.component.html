@@ -8,11 +8,11 @@
       Enter valid Branch name</mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <mat-label>Description</mat-label>
+    <mat-label>Address</mat-label>
     <input matInput formControlName="branchhDescription">
     <mat-error
       *ngIf="branchForm.controls['branchhDescription'].hasError('required')&&branchForm.controls['branchhDescription'].touched||branchForm.controls['branchhDescription'].dirty">
-      Enter valid Branch name</mat-error>
+      Enter valid Branch Address</mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
     <mat-label>GSTIN</mat-label>
@@ -26,14 +26,14 @@
     <input matInput formControlName="branchEmail">
     <mat-error
       *ngIf="branchForm.controls['branchEmail'].hasError('required')&&branchForm.controls['branchEmail'].touched||branchForm.controls['branchEmail'].dirty">
-      Enter valid Branch name</mat-error>
+      Enter valid Branch email</mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width">
     <mat-label>Contact</mat-label>
     <input matInput formControlName="branchContact">
     <mat-error
       *ngIf="branchForm.controls['branchContact'].hasError('required')&&branchForm.controls['branchContact'].touched||branchForm.controls['branchContact'].dirty">
-      Enter valid Branch name</mat-error>
+      Enter valid Branch contact</mat-error>
   </mat-form-field>
 </form>
 <div>

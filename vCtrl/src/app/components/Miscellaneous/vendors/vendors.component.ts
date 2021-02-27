@@ -62,7 +62,16 @@ export class VendorsComponent implements OnInit, AfterViewInit {
   }
 
   editVendor(i) {
+    const dialogRef = this.dialog.open(VendorCrudComponent, {
+      width: '600px',
+      data: this.vendors[i]
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.added){
+        this.getVendors();
+      }
+    });
   }
 
   deleteVendor(i) {

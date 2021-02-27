@@ -42,9 +42,9 @@ export class MaterialCrudComponent implements OnInit {
     this.materialModal = {
       name: this.materialForm.controls["name"].value,
       unit: this.materialForm.controls["unit"].value.toUpperCase(),
-      price: this.materialForm.controls["price"].value,
+      price: parseFloat(this.materialForm.controls["price"].value),
     };
-    if(this.data==null){
+    if (this.data == null) {
       this.loadingService.presentLoading("Adding material...");
       this.afs.collection("materials").add(this.materialModal).then(response => {
         this.loadingService.dismissLoading();
@@ -54,16 +54,16 @@ export class MaterialCrudComponent implements OnInit {
         this.loadingService.dismissLoading();
         this.snackbar.open("Error saving material", "OK", { duration: 3000 });
       });
-    }else{
+    } else {
       this.loadingService.presentLoading("Updating material...");
-    this.afs.collection("materials").doc(this.data.id).set(this.materialModal).then(response => {
-      this.loadingService.dismissLoading();
-      this.dialogRef.close({ added: true });
-      this.snackbar.open("Material Updated!", "OK", { duration: 3000 });
-    }).catch(error => {
-      this.loadingService.dismissLoading();
-      this.snackbar.open("Error Updating material", "OK", { duration: 3000 });
-    });
+      this.afs.collection("materials").doc(this.data.id).set(this.materialModal).then(response => {
+        this.loadingService.dismissLoading();
+        this.dialogRef.close({ added: true });
+        this.snackbar.open("Material Updated!", "OK", { duration: 3000 });
+      }).catch(error => {
+        this.loadingService.dismissLoading();
+        this.snackbar.open("Error Updating material", "OK", { duration: 3000 });
+      });
     }
   }
 

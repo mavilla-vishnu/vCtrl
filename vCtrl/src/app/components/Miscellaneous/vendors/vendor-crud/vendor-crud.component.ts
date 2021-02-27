@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { VendorModal } from 'src/app/core/modals/VendorModal';
 import { LoadingService } from 'src/app/core/Services/loading.service';
@@ -18,7 +18,8 @@ export class VendorCrudComponent implements OnInit {
     private dialogRef: MatDialogRef<VendorCrudComponent>,
     private snackbar: MatSnackBar,
     private loadingService: LoadingService,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    @Inject(MAT_DIALOG_DATA) public data: VendorModal
   ) { }
 
   ngOnInit(): void {
@@ -32,6 +33,16 @@ export class VendorCrudComponent implements OnInit {
       state: new FormControl("", [Validators.required]),
       pincode: new FormControl("", [Validators.required, Validators.maxLength(6), Validators.minLength(6)])
     });
+    if (this.data != null) {
+      this.vendorForm.controls["name"].setValue(this.data.name);
+      this.vendorForm.controls["cin_no"].setValue(this.data.cin_no);
+      this.vendorForm.controls["gst_no"].setValue(this.data.gst_no);
+      this.vendorForm.controls["addr1"].setValue(this.data.addr1);
+      this.vendorForm.controls["addr2"].setValue(this.data.addr2);
+      this.vendorForm.controls["city"].setValue(this.data.city);
+      this.vendorForm.controls["state"].setValue(this.data.state);
+      this.vendorForm.controls["pincode"].setValue(this.data.pincode);
+    }
   }
 
   save() {
@@ -49,15 +60,27 @@ export class VendorCrudComponent implements OnInit {
       state: this.vendorForm.controls["state"].value,
       pincode: this.vendorForm.controls["pincode"].value
     };
-    this.loadingService.presentLoading("Adding vendor...")
-    this.afs.collection("vendors").add(this.vendorModal).then(resp => {
-      this.dialogRef.close({ added: true });
-      this.snackbar.open("Vendor saved successfully!", "OK", { duration: 3000 });
-      this.loadingService.dismissLoading();
-    }).catch(err => {
-      this.loadingService.dismissLoading();
-      this.snackbar.open("Error saving vendor!", "OK", { duration: 3000 });
-    });
+    if (this.data == null) {
+      this.loadingService.presentLoading("Adding vendor...")
+      this.afs.collection("vendors").add(this.vendorModal).then(resp => {
+        this.dialogRef.close({ added: true });
+        this.snackbar.open("Vendor saved successfully!", "OK", { duration: 3000 });
+        this.loadingService.dismissLoading();
+      }).catch(err => {
+        this.loadingService.dismissLoading();
+        this.snackbar.open("Error saving vendor!", "OK", { duration: 3000 });
+      });
+    } else {
+      this.loadingService.presentLoading("Updating vendor...")
+      this.afs.collection("vendors").doc(this.data.id).set(this.vendorModal).then(resp => {
+        this.dialogRef.close({ added: true });
+        this.snackbar.open("Vendor updated successfully!", "OK", { duration: 3000 });
+        this.loadingService.dismissLoading();
+      }).catch(err => {
+        this.loadingService.dismissLoading();
+        this.snackbar.open("Error updating vendor!", "OK", { duration: 3000 });
+      });
+    }
   }
 
   cancel() {

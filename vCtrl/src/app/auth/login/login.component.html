@@ -300,22 +300,28 @@
 </style>
 
 <div class="content" role="main">
-  <img src="../assets/logo/logo_main.png" style="width: 20%;">
+  <img class="icon" src="../assets/logo/logo_new.png" style="width: 14%; margin-bottom: 36px;">
+  <mat-card-title>Login</mat-card-title>
   <mat-card class="example-card">
+    <mat-card-header>
+    </mat-card-header>
     <mat-card-content>
       <div class="text-center">
-        <h1>Login as admin</h1>
         <form [formGroup]="loginForm">
           <mat-form-field class="example-full-width">
             <mat-label>Email address</mat-label>
             <input matInput type="email" formControlName="email">
-            <mat-error *ngIf="loginForm.controls['email'].hasError('required')&& loginForm.controls['email'].touched||loginForm.controls['email'].dirty">Enter valid email address</mat-error>
+            <mat-error
+              *ngIf="loginForm.controls['email'].hasError('required')&& loginForm.controls['email'].touched||loginForm.controls['email'].dirty">
+              Enter valid email address</mat-error>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
             <mat-label>Password</mat-label>
             <input matInput type="password" formControlName="password">
-            <mat-error *ngIf="loginForm.controls['password'].hasError('required')&& loginForm.controls['password'].touched||loginForm.controls['password'].dirty">Enter valid password of length 6 to 10 characters</mat-error>
+            <mat-error
+              *ngIf="loginForm.controls['password'].hasError('required')&& loginForm.controls['password'].touched||loginForm.controls['password'].dirty">
+              Enter valid password of length 6 to 10 characters</mat-error>
           </mat-form-field>
         </form>
         <button mat-raised-button color="primary" (click)="login()">Login</button>
