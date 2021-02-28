@@ -1,37 +1,39 @@
 <div style="display: flex;">
   <h1>New Purchase Order - {{poNumber}}</h1>
   <div style="flex: 1 1 auto;"></div>
-  <button mat-raised-button color="primary" style="height: fit-content;">Save</button>
+  <button mat-raised-button color="primary" style="height: fit-content;" (click)="addPo()">Save</button>
 </div>
 
-<div>
-  <mat-form-field>
-    <mat-label>Select vendor</mat-label>
-    <select matNativeControl required>
-      <option></option>
-      <option value="volvo">Volvo</option>
-      <option value="saab">Saab</option>
-      <option value="mercedes">Mercedes</option>
-      <option value="audi">Audi</option>
-    </select>
-  </mat-form-field>
-  <mat-form-field style="margin-left: 16px;">
-    <mat-label>Select PO Date</mat-label>
-    <input matInput [matDatepicker]="dp3" disabled>
-    <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
-  </mat-form-field>
-  <mat-form-field style="margin-left: 16px;">
-    <mat-label>Select branch</mat-label>
-    <select matNativeControl required>
-      <option></option>
-      <option value="volvo">Volvo</option>
-      <option value="saab">Saab</option>
-      <option value="mercedes">Mercedes</option>
-      <option value="audi">Audi</option>
-    </select>
-  </mat-form-field>
-</div>
+<mat-form-field>
+  <mat-label>Select vendor</mat-label>
+  <mat-select matNativeControl required [formControl]="vendorControl">
+    <mat-option>Select Vendor</mat-option>
+    <mat-option value="volvo">Volvo</mat-option>
+    <mat-option value="saab">Saab</mat-option>
+    <mat-option value="mercedes">Mercedes</mat-option>
+    <mat-option value="audi">Audi</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field style="margin-left: 16px;">
+  <mat-label>Select PO Date</mat-label>
+  <input matInput [matDatepicker]="dp3" disabled [formControl]="poDateControl">
+  <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+  <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+</mat-form-field>
+<mat-form-field style="margin-left: 16px;">
+  <mat-label>Select branch</mat-label>
+  <mat-select matNativeControl required>
+    <mat-option>Select Branch</mat-option>
+    <mat-option value="volvo">Volvo</mat-option>
+    <mat-option value="saab">Saab</mat-option>
+    <mat-option value="mercedes">Mercedes</mat-option>
+    <mat-option value="audi">Audi</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field style="margin-left: 16px;">
+  <mat-label>GST %</mat-label>
+  <input matInput type="number" />
+</mat-form-field>
 
 <table mat-table [dataSource]="materialsDataSource" width="100%" style="max-height: 500px;">
 
