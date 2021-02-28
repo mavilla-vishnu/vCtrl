@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormControl } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -24,21 +24,25 @@ export class PurchaseorderAddMaterialComponent implements OnInit {
     private afs: AngularFirestore,
     private loading: LoadingService,
     private toaster: MatSnackBar,
-    private dialogRef: MatDialogRef<PurchaseorderAddMaterialComponent>
+    private dialogRef: MatDialogRef<PurchaseorderAddMaterialComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit() {
     this.getMaterials();
+    console.log(this.data);
     this.quantityControl.valueChanges.subscribe(value => {
       var quantity = parseFloat(value);
       if (quantity > 0 && this.selectedMaterial) {
         this.amount = this.selectedMaterial.price * quantity;
-        this.selectedMaterial.quantity=quantity;
+        this.selectedMaterial.quantity = quantity;
       }
     });
-    this.myControl.valueChanges.subscribe((value)=>{
-      if(value==""){
-        this.selectedMaterial=null;
+    this.myControl.valueChanges.subscribe((value) => {
+      if (value == "") {
+        this.selectedMaterial = null;
+        this.amount=0;
+        this.quantityControl.setValue("");
       }
     })
     this.dialogRef.backdropClick().subscribe(() => {
@@ -51,7 +55,7 @@ export class PurchaseorderAddMaterialComponent implements OnInit {
       this.toaster.open("Please select a material!", "OK", { duration: 2000 });
       return;
     }
-    if (parseFloat(this.quantityControl.value) <= 0||this.quantityControl.value=="") {
+    if (parseFloat(this.quantityControl.value) <= 0 || this.quantityControl.value == "") {
       this.toaster.open("Please enter valid quantity!", "OK", { duration: 2000 });
       return;
     }
@@ -83,9 +87,24 @@ export class PurchaseorderAddMaterialComponent implements OnInit {
   }
 
   materialSelected(event) {
-    this.selectedMaterial = event.option.value;
-    this.quantityControl.setValue("");
-    this.amount = 0.00;
+    var materialAdded = false;
+    this.data.materials.forEach(mats => {
+      if (mats.id == event.option.value.id) {
+        materialAdded = true;
+      }
+    });
+    console.log(materialAdded);
+    if (!materialAdded) {
+      this.selectedMaterial = event.option.value;
+      this.quantityControl.setValue("");
+      this.amount = 0.00;
+    } else {
+      this.toaster.open("Material already added!", "OK", { duration: 2000 });
+      this.myControl.setValue("");
+      this.selectedMaterial = null;
+      this.quantityControl.setValue("");
+      this.amount = 0.00;
+    }
   }
 
   displayFn(material: MaterialModal): string {

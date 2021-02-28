@@ -13,7 +13,7 @@ export class PurchaseorderCrudComponent implements OnInit {
   materials: MaterialModal[] = [];
   materialsDataSource = new MatTableDataSource(this.materials);
   displayedColumns: string[] = ['name', 'unit', 'quantity', 'price', 'value', 'actions'];
-
+  poNumber="PO"+Date.now();
   constructor(private dialog: MatDialog) { }
 
   getTotalCost() {
@@ -26,7 +26,8 @@ export class PurchaseorderCrudComponent implements OnInit {
 
   addMaerial() {
     const dialogRef = this.dialog.open(PurchaseorderAddMaterialComponent, {
-      width: '350px'
+      width: '350px',
+      data: { materials: this.materials }
     });
 
     dialogRef.afterClosed().subscribe(result => {

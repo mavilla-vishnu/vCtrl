@@ -18,8 +18,7 @@ export class PurchaseOrderComponent implements OnInit {
 
   newPurchaseOrder() {
     const dialogRef = this.dialog.open(PurchaseorderCrudComponent, {
-      width: '850px',
-      height: '550px'
+      width: '850px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

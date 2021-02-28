@@ -29,7 +29,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -128,7 +128,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
   ],
   providers: [
     AngularFireAuthGuard,
-    MatDatepickerModule
+    MatDatepickerModule,
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
   ],
   bootstrap: [AppComponent]
 })

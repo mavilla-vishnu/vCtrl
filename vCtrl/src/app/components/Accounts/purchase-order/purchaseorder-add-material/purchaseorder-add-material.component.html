@@ -20,6 +20,6 @@
 <p class="subtext">Amount: ₹ {{amount}}</p>
 
 <div style="text-align: end; margin-top: 18px;">
-  <button mat-button>Cancel</button>
+  <button mat-button (click)="cancel()">Cancel</button>
   <button mat-raised-button color="primary" (click)="addItem()">Add</button>
 </div>

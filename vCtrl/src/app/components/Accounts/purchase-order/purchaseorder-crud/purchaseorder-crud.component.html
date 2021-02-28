@@ -1,9 +1,14 @@
-<h1>New Purchase Order</h1>
+<div style="display: flex;">
+  <h1>New Purchase Order - {{poNumber}}</h1>
+  <div style="flex: 1 1 auto;"></div>
+  <button mat-raised-button color="primary" style="height: fit-content;">Save</button>
+</div>
 
 <div>
   <mat-form-field>
     <mat-label>Select vendor</mat-label>
     <select matNativeControl required>
+      <option></option>
       <option value="volvo">Volvo</option>
       <option value="saab">Saab</option>
       <option value="mercedes">Mercedes</option>
@@ -16,9 +21,19 @@
     <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
     <mat-datepicker #dp3 disabled="false"></mat-datepicker>
   </mat-form-field>
+  <mat-form-field style="margin-left: 16px;">
+    <mat-label>Select branch</mat-label>
+    <select matNativeControl required>
+      <option></option>
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="mercedes">Mercedes</option>
+      <option value="audi">Audi</option>
+    </select>
+  </mat-form-field>
 </div>
 
-<table mat-table [dataSource]="materialsDataSource" width="100%">
+<table mat-table [dataSource]="materialsDataSource" width="100%" style="max-height: 500px;">
 
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -67,5 +82,5 @@
 
 <div style="text-align: end; margin-top: 18px;">
   <button mat-button>Cancel</button>
-  <button mat-raised-button color="primary" (click)="addMaerial()">Add Material</button>
+  <button mat-button color="primary" (click)="addMaerial()">Add Material</button>
 </div>
