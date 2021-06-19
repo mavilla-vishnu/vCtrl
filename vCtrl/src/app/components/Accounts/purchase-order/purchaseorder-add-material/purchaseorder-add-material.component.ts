@@ -19,7 +19,7 @@ export class PurchaseorderAddMaterialComponent implements OnInit {
   materials: MaterialModal[] = [];
   filteredOptions: Observable<MaterialModal[]>;
   selectedMaterial: MaterialModal;
-  amount = 0.00;
+  amount: number = 0.00;
   constructor(
     private afs: AngularFirestore,
     private loading: LoadingService,
@@ -34,14 +34,15 @@ export class PurchaseorderAddMaterialComponent implements OnInit {
     this.quantityControl.valueChanges.subscribe(value => {
       var quantity = parseFloat(value);
       if (quantity > 0 && this.selectedMaterial) {
-        this.amount = this.selectedMaterial.price * quantity;
+        this.amount = parseFloat((this.selectedMaterial.price * quantity).toFixed(2));
         this.selectedMaterial.quantity = quantity;
+        this.selectedMaterial.value=this.amount;
       }
     });
     this.myControl.valueChanges.subscribe((value) => {
       if (value == "") {
         this.selectedMaterial = null;
-        this.amount=0;
+        this.amount = 0;
         this.quantityControl.setValue("");
       }
     })

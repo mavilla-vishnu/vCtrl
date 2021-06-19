@@ -7,7 +7,6 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./delete-confirmation.component.scss']
 })
 export class DeleteConfirmationComponent implements OnInit {
-
   constructor(private dialogRef: MatDialogRef<DeleteConfirmationComponent>) { }
 
   ngOnInit(): void {

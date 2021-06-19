@@ -1,0 +1,8 @@
+<h1>Enter Quantity</h1>
+<mat-form-field class="example-full-width">
+  <mat-label>Quantity</mat-label>
+  <input type="number" matInput [value]="quantity" [formControl]="quantityControl" autocomplete="off">
+</mat-form-field>
+
+<button mat-raised-button color="primary" style="float: right;" (click)="confirm()">Confirm</button>
+<button mat-button style="float: right;" (click)="cancel()">Cancel</button>

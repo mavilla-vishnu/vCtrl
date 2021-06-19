@@ -59,6 +59,7 @@ import { CustomerCrudComponent } from './components/Miscellaneous/customers/cust
 import { PurchaseorderCrudComponent } from './components/Accounts/purchase-order/purchaseorder-crud/purchaseorder-crud.component';
 import { PurchaseorderAddMaterialComponent } from './components/Accounts/purchase-order/purchaseorder-add-material/purchaseorder-add-material.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { QuantityPickComponent } from './partials/quantity-pick/quantity-pick.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     VendorCrudComponent,
     CustomerCrudComponent,
     PurchaseorderCrudComponent,
-    PurchaseorderAddMaterialComponent
+    PurchaseorderAddMaterialComponent,
+    QuantityPickComponent
   ],
   exports: [
     AngularFireAuthModule

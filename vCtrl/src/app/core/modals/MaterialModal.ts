@@ -3,5 +3,6 @@ export interface MaterialModal {
     unit: string,
     price: number,
     id?: string,
-    quantity?: number
+    quantity?: number,
+    value?: number
 }
