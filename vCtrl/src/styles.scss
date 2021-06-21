@@ -48,9 +48,10 @@ body {
   border-right: none !important;
 }
 
-.mat-toolbar{
-  background: white !important;
-  color: #ff6600 !important;
+
+
+mat-sidenav{
+  background: #ff6600 !important;
 }
 
 .example-sidenav-content {
@@ -71,11 +72,13 @@ body {
 }
 
 .menu-button {
+  color: white;
   transition: 300ms ease-in-out;
   transform: rotate(0deg);
 }
 
 .menu-button.rotated {
+  color: white;
   transform: rotate(180deg);
 }
 
@@ -84,6 +87,7 @@ body {
   transition: transform 300ms ease;
   transform-origin: top;
   padding-left: 30px;
+  color: white;
 }
 
 .submenu.expanded {

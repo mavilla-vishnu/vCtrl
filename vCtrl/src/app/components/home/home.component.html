@@ -1,20 +1,20 @@
-<mat-toolbar class="example-toolbar">
+<mat-toolbar class="mat-elevation-z8">
   <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
-  <img src="../.././../assets/logo/logo_new.png" class="example-app-name" style="height: 48px;"/>
+  <img src="../.././../assets/logo//logo_new_transparent.png" class="example-app-name" style="height: 48px;"/>
   <span class="example-spacer"></span>
   <button mat-icon-button class="example-icon" (click)="logout()">Logout</button>
 </mat-toolbar>
-<mat-sidenav-container class="example-container" autosize>
+<mat-sidenav-container class="example-container " autosize >
   <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true">
     <mat-nav-list *ngFor="let menu of subMenu">
-      <mat-list-item (click)="menu.showSubmenu = !menu.showSubmenu" class="parent">
+      <mat-list-item (click)="menu.showSubmenu = !menu.showSubmenu" class="parent" style="color: white;">
         <span class="full-width">{{menu.title}}</span>
-        <mat-icon color="primary" mat-list-icon>{{menu.icon}}</mat-icon>
+        <mat-icon style="color: white;" mat-list-icon>{{menu.icon}}</mat-icon>
         <mat-icon class="menu-button" [ngClass]="{'rotated' : menu.showSubmenu}">expand_more
         </mat-icon>
       </mat-list-item>
       <div class="submenu" *ngIf="menu.showSubmenu&&menu.children.length>0">
-        <a mat-list-item *ngFor="let child of menu.children" [routerLink]="child.url">{{child.title}}</a>
+        <a mat-list-item *ngFor="let child of menu.children" [routerLink]="child.url"><mat-icon>chevron_right</mat-icon>{{child.title}}</a>
       </div>
     </mat-nav-list>
     <mat-nav-list>

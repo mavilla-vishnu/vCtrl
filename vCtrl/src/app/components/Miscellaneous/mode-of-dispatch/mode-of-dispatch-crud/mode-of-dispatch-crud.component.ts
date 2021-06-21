@@ -22,7 +22,7 @@ export class ModeOfDispatchCrudComponent implements OnInit {
   }
 
   cancel() {
-
+    this.dialogRef.close({ added: false });
   }
 
   saveMode() {

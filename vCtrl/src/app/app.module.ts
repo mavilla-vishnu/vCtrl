@@ -65,6 +65,7 @@ import { PaymentTermsComponent } from './components/Miscellaneous/payment-terms/
 import { WarrantyComponent } from './components/Miscellaneous/warranty/warranty.component';
 import { DeliveryScheduleComponent } from './components/Miscellaneous/delivery-schedule/delivery-schedule.component';
 import { ModeOfDispatchCrudComponent } from './components/Miscellaneous/mode-of-dispatch/mode-of-dispatch-crud/mode-of-dispatch-crud.component';
+import { PaymentTermsCrudComponent } from './components/Miscellaneous/payment-terms/payment-terms-crud/payment-terms-crud.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { ModeOfDispatchCrudComponent } from './components/Miscellaneous/mode-of-
     PaymentTermsComponent,
     WarrantyComponent,
     DeliveryScheduleComponent,
-    ModeOfDispatchCrudComponent
+    ModeOfDispatchCrudComponent,
+    PaymentTermsCrudComponent
   ],
   exports: [
     AngularFireAuthModule
