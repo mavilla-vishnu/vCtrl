@@ -1,0 +1,12 @@
+<h1>Add Mode of dispatch</h1>
+
+<mat-form-field class="example-full-width">
+  <mat-label>Mode of dispatch</mat-label>
+  <input matInput placeholder="Ex. By Surface" [formControl]="modControl" autocomplete="off">
+</mat-form-field>
+
+
+<div style="margin-top: 12px; text-align: right;">
+  <button mat-button color="primary" (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="saveMode()">Save</button>
+</div>

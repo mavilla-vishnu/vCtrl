@@ -60,6 +60,11 @@ import { PurchaseorderCrudComponent } from './components/Accounts/purchase-order
 import { PurchaseorderAddMaterialComponent } from './components/Accounts/purchase-order/purchaseorder-add-material/purchaseorder-add-material.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { QuantityPickComponent } from './partials/quantity-pick/quantity-pick.component';
+import { ModeOfDispatchComponent } from './components/Miscellaneous/mode-of-dispatch/mode-of-dispatch.component';
+import { PaymentTermsComponent } from './components/Miscellaneous/payment-terms/payment-terms.component';
+import { WarrantyComponent } from './components/Miscellaneous/warranty/warranty.component';
+import { DeliveryScheduleComponent } from './components/Miscellaneous/delivery-schedule/delivery-schedule.component';
+import { ModeOfDispatchCrudComponent } from './components/Miscellaneous/mode-of-dispatch/mode-of-dispatch-crud/mode-of-dispatch-crud.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +98,12 @@ import { QuantityPickComponent } from './partials/quantity-pick/quantity-pick.co
     CustomerCrudComponent,
     PurchaseorderCrudComponent,
     PurchaseorderAddMaterialComponent,
-    QuantityPickComponent
+    QuantityPickComponent,
+    ModeOfDispatchComponent,
+    PaymentTermsComponent,
+    WarrantyComponent,
+    DeliveryScheduleComponent,
+    ModeOfDispatchCrudComponent
   ],
   exports: [
     AngularFireAuthModule

@@ -61,7 +61,11 @@ export class HomeComponent implements OnInit {
       children:[
         {title: "Materials", url: "materials"},
         {title: "Vendors", url: "vendors"},
-        {title : "Customers", url: "customers"}
+        {title : "Customers", url: "customers"},
+        {title : "Mode of dispatch", url: "mod"},
+        {title : "Payment terms", url: "paymentTerms"},
+        {title : "Warranty", url: "warranty"},
+        {title : "Delivery schedule", url: "deliverySchedule"},
       ],
       isExpanded: false,
       showSubmenu: false,

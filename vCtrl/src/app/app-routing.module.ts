@@ -17,6 +17,10 @@ import { SalesOrderComponent } from './components/Accounts/sales-order/sales-ord
 import { MaterialsComponent } from './components/Miscellaneous/materials/materials.component';
 import { VendorsComponent } from './components/Miscellaneous/vendors/vendors.component';
 import { CustomersComponent } from './components/Miscellaneous/customers/customers.component';
+import { ModeOfDispatchComponent } from './components/Miscellaneous/mode-of-dispatch/mode-of-dispatch.component';
+import { PaymentTermsComponent } from './components/Miscellaneous/payment-terms/payment-terms.component';
+import { WarrantyComponent } from './components/Miscellaneous/warranty/warranty.component';
+import { DeliveryScheduleComponent } from './components/Miscellaneous/delivery-schedule/delivery-schedule.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['home']);
@@ -42,7 +46,11 @@ const routes: Routes = [
       { path: "so", component: SalesOrderComponent },
       { path: "materials", component: MaterialsComponent },
       { path: "vendors", component: VendorsComponent },
-      { path: "customers", component: CustomersComponent }
+      { path: "customers", component: CustomersComponent },
+      { path: "mod", component: ModeOfDispatchComponent },
+      { path: "paymentTerms", component: PaymentTermsComponent },
+      { path: "warranty", component: WarrantyComponent },
+      { path: "deliverySchedule", component: DeliveryScheduleComponent },
     ]
   },
   { path: "login", component: LoginComponent, data: { authGuardPipe: redirectLoggedInToItems } }

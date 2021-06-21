@@ -50,16 +50,16 @@ export class PdfServiceService {
     ])
     poModal.materials.forEach((material, index) => {
       bodyMaterials.push([
-        { text: "" + (index + 1), style: 'smallBold' },
+        { text: "" + (index + 1), style: 'smallNormal' },
         { text: '' },
-        { text: material.name, style: 'smallBold', colSpan: 2 },
+        { text: material.name, style: 'smallNormal', colSpan: 2 },
         { text: '' },
-        { text: material.quantity, style: 'smallBold' },
-        { text: material.unit, style: 'smallBold' },
-        { text: ("" + material.price).split(".")[0], style: 'smallBold' },
-        { text: ("" + material.price).split(".")[1], style: 'smallBold' },
-        { text: ("" + material.value).split(".")[0], style: 'smallBold' },
-        { text: ("" + material.value).split(".")[1], style: 'smallBold' }
+        { text: material.quantity, style: 'smallNormal' },
+        { text: material.unit, style: 'smallNormal' },
+        { text: ("" + material.price).split(".")[0], style: 'smallNormal' },
+        { text: ("" + material.price).split(".")[1].length<2?("0"+material.price).split(".")[1]:(""+material.price).split(".")[1] , style: 'smallNormal' },
+        { text: ("" + material.value).split(".")[0], style: 'smallNormal' },
+        { text: ("" + material.value).split(".")[1].length<2?("0"+material.value).split(".")[1]:(""+material.value).split(".")[1] , style: 'smallNormal' },
       ]);
     });
     bodyMaterials.push([
@@ -71,19 +71,19 @@ export class PdfServiceService {
       {},
       {},
       {},
-      {text: ''+poModal.totalCost, alignment: 'right', colSpan: 2, style: 'smallBoldLfont'},
+      {text: 'Rs. '+poModal.totalCost, alignment: 'right', colSpan: 2, style: 'smallBoldLfont'},
       {}
     ]);
     bodyMaterials.push([
       {text: ''},
       {text: ''},
-      {text: 'GST @ '+poModal.gstPercentage+'%', alignment: 'right', colSpan: 6, style: 'smalsmallBoldLfontlBold'},
+      {text: 'GST @ Rs. '+poModal.gstPercentage+'%', alignment: 'right', colSpan: 6, style: 'smalsmallBoldLfontlBold'},
       {},
       {},
       {},
       {},
       {},
-      {text: ''+poModal.totalGstValue, alignment: 'right', colSpan: 2, style: 'smallBoldLfont'},
+      {text: 'Rs. '+poModal.totalGstValue, alignment: 'right', colSpan: 2, style: 'smallBoldLfont'},
       {}
     ]);
     bodyMaterials.push([
@@ -95,7 +95,7 @@ export class PdfServiceService {
       {},
       {},
       {},
-      {text: ''+poModal.totalValueWithGst, alignment: 'right', colSpan: 2, style: 'smallBoldLfont'},
+      {text: 'Rs. '+poModal.totalValueWithGst, alignment: 'right', colSpan: 2, style: 'smallBoldLfont'},
       {}
     ]);
     console.log(bodyMaterials);
@@ -157,6 +157,10 @@ export class PdfServiceService {
         smallBold: {
           fontSize: 8,
           bold: true
+        },
+        smallNormal: {
+          fontSize: 8,
+          bold: false
         },
         smallBoldLfont: {
           fontSize: 10,
