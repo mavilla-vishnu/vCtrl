@@ -16,7 +16,7 @@ import { LoadingService } from 'src/app/core/Services/loading.service';
 export class PaymentTermsCrudComponent implements OnInit {
   withinControl = new FormControl();
   periodControl = new FormControl();
- 
+
   constructor(private snackbar: MatSnackBar, private loadingService: LoadingService, private afs: AngularFirestore, private dialogRef: MatDialogRef<PaymentTermsCrudComponent>) { }
 
   ngOnInit(): void {
@@ -28,17 +28,18 @@ export class PaymentTermsCrudComponent implements OnInit {
   }
 
   saveTerm() {
-    if(this.withinControl.value==""){
-      this.snackbar.open("Please enter within time in number", "OK", {duration: 2000});
+    if (this.withinControl.value == "") {
+      this.snackbar.open("Please enter within time in number", "OK", { duration: 2000 });
       return;
     }
-    if(this.periodControl.value==null|| this.periodControl.value==undefined){
-      this.snackbar.open("Please select period time", "OK", {duration: 2000});
+    if (this.periodControl.value == null || this.periodControl.value == undefined) {
+      this.snackbar.open("Please select period time", "OK", { duration: 2000 });
       return;
     }
     var pt: PaymentTerms = {
       within: this.withinControl.value,
-      period: this.periodControl.value
+      period: this.periodControl.value,
+      ptName: this.withinControl.value + " " + this.periodControl.value
     };
     this.loadingService.presentLoading("Adding new term...");
     this.afs.collection("paymentTerms").add(pt).then(response => {

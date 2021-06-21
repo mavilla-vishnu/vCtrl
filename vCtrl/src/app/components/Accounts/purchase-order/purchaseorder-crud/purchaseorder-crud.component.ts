@@ -16,6 +16,10 @@ import { PurchaseorderAddMaterialComponent } from '../purchaseorder-add-material
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { PdfServiceService } from 'src/app/core/Services/pdf-service.service';
+import { PaymentTerms } from 'src/app/core/modals/PaymentTermsModal';
+import { Warranty } from 'src/app/core/modals/WarrantyModal';
+import { DeliverySchedules } from 'src/app/core/modals/DeliverySchedules';
+import { ModeOfDispatch } from 'src/app/core/modals/ModeOfDispatchModal';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -28,12 +32,24 @@ export class PurchaseorderCrudComponent implements OnInit {
   vendorControl: FormControl = new FormControl();
   poDateControl: FormControl = new FormControl();
   branchControl: FormControl = new FormControl();
+
+  ptControl: FormControl = new FormControl();
+  modControl: FormControl = new FormControl();
+  warrControl: FormControl = new FormControl();
+  dsControl: FormControl = new FormControl();
+
   gstControl: FormControl = new FormControl();
   materialsDataSource = new MatTableDataSource(this.materials);
   displayedColumns: string[] = ['name', 'unit', 'quantity', 'price', 'value', 'actions'];
   poNumber = "PO" + Date.now();
+
   vendors: VendorModal[] = [];
   branchArray: BranchModal[] = [];
+  paymentTerms: PaymentTerms[] = [];
+  warranties: Warranty[] = [];
+  deliverySchedules: DeliverySchedules[] = [];
+  modeOfDispatch: ModeOfDispatch[] = [];
+
   purchaseOrder: PoModal = {};
   gstValue = 0;
   totalWithGst = 0;
@@ -74,18 +90,32 @@ export class PurchaseorderCrudComponent implements OnInit {
     this.purchaseOrder.poDate = this.poDateControl.value;
     this.purchaseOrder.branch = this.branchArray[this.branchArray.findIndex(b => b.id == this.branchControl.value)];
     this.purchaseOrder.gstPercentage = this.gstControl.value;
+
+    this.purchaseOrder.modeOfDispatch = this.modeOfDispatch[this.modeOfDispatch.findIndex(xc => xc.id == this.modControl.value)];
+    this.purchaseOrder.paymentTerms = this.paymentTerms[this.paymentTerms.findIndex(xc => xc.id == this.ptControl.value)];
+    this.purchaseOrder.warranty = this.warranties[this.warranties.findIndex(wr => wr.id == this.warrControl.value)];
+    this.purchaseOrder.deliverySchedule = this.deliverySchedules[this.deliverySchedules.findIndex(xc => xc.id == this.dsControl.value)];
+
     this.purchaseOrder.totalCost = this.getTotalCost();
     this.purchaseOrder.totalQuantity = this.getTotalQuantity();
-    this.purchaseOrder.totalGstValue=this.getGstValue();
-    this.purchaseOrder.totalValueWithGst=this.getTotalGstValue();
+    this.purchaseOrder.totalGstValue = this.getGstValue();
+    this.purchaseOrder.totalValueWithGst = this.getTotalGstValue();
     //Proceed to save PO
     this.loadingService.presentLoading("Saving purchase order...")
     this.afs.collection("po").doc(this.poNumber).set(this.purchaseOrder).then(response => {
-      this.loadingService.dismissLoading();
+      console.log(response)
       if (boolPrint) {
-        this.pdfService.generatePdfPurchaseModal(this.purchaseOrder);
+        this.afs.collection("po").doc(this.poNumber).get().subscribe(response => {
+          var poModal = response.data();
+          console.log(poModal);
+          this.pdfService.generatePdfPurchaseModal(poModal);
+          this.loadingService.dismissLoading();
+          this.dialogRef.close({ added: true });
+        })
+      } else {
+        this.loadingService.dismissLoading();
+        this.dialogRef.close({ added: true });
       }
-      this.dialogRef.close({ added: true });
     }).catch(error => {
       this.loadingService.dismissLoading();
       this.snackbar.open("Error saving PO. Please try again later!", "OK", { duration: 3000 });
@@ -131,7 +161,35 @@ export class PurchaseorderCrudComponent implements OnInit {
           vTemp.id = vnd.id;
           this.vendors.push(vTemp);
         });
-        this.loadingService.dismissLoading();
+        this.afs.collection("deliverySchedules").get().subscribe((dsResp: any) => {
+          dsResp.forEach(vnd => {
+            var vTemp: DeliverySchedules = vnd.data();
+            vTemp.id = vnd.id;
+            this.deliverySchedules.push(vTemp);
+          });
+          this.afs.collection("mod").get().subscribe((modResp: any) => {
+            modResp.forEach(vnd => {
+              var vTemp: ModeOfDispatch = vnd.data();
+              vTemp.id = vnd.id;
+              this.modeOfDispatch.push(vTemp);
+            });
+            this.afs.collection("paymentTerms").get().subscribe((ptResp: any) => {
+              ptResp.forEach(vnd => {
+                var vTemp: PaymentTerms = vnd.data();
+                vTemp.id = vnd.id;
+                this.paymentTerms.push(vTemp);
+              });
+              this.afs.collection("warranties").get().subscribe((warrResp: any) => {
+                warrResp.forEach(vnd => {
+                  var vTemp: Warranty = vnd.data();
+                  vTemp.id = vnd.id;
+                  this.warranties.push(vTemp);
+                });
+                this.loadingService.dismissLoading();
+              });
+            });
+          });
+        });
       });
     });
   }

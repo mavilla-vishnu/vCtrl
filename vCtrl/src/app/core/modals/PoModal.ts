@@ -1,6 +1,10 @@
 import { BranchModal } from "./BranchModal";
+import { DeliverySchedules } from "./DeliverySchedules";
 import { MaterialModal } from "./MaterialModal";
+import { ModeOfDispatch } from "./ModeOfDispatchModal";
+import { PaymentTerms } from "./PaymentTermsModal";
 import { VendorModal } from "./VendorModal";
+import { Warranty } from "./WarrantyModal";
 
 export interface PoModal {
     poDate?: any,
@@ -12,5 +16,9 @@ export interface PoModal {
     totalCost?: number,
     totalQuantity?: number,
     totalGstValue?: number,
-    totalValueWithGst?: number
+    totalValueWithGst?: number,
+    modeOfDispatch?:ModeOfDispatch,
+    paymentTerms?: PaymentTerms,
+    warranty?: Warranty,
+    deliverySchedule?: DeliverySchedules
 }

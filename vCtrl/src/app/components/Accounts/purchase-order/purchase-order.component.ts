@@ -56,7 +56,6 @@ export class PurchaseOrderComponent implements AfterViewInit {
   }
 
   printPo(row) {
-    console.log(row);
     this.pdfService.generatePdfPurchaseModal(row);
   }
 

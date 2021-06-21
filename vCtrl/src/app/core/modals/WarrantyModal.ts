@@ -1,6 +1,6 @@
-export interface PaymentTerms {
+export interface Warranty {
     id?: string,
     within: string,
     period: string,
-    ptName: string
+    warrName: string
 }

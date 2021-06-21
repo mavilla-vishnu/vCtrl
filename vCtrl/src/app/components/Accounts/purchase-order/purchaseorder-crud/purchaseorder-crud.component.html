@@ -24,6 +24,32 @@
     <mat-option *ngFor="let branch of branchArray" [value]="branch.id">{{branch.branchName}}</mat-option>
   </mat-select>
 </mat-form-field>
+
+<mat-form-field style="margin-left: 16px;">
+  <mat-label>Select Mode of dispatch</mat-label>
+  <mat-select matNativeControl required [formControl]="modControl">
+    <mat-option *ngFor="let branch of modeOfDispatch" [value]="branch.id">{{branch.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Select payment terms</mat-label>
+  <mat-select matNativeControl required [formControl]="ptControl">
+    <mat-option *ngFor="let branch of paymentTerms" [value]="branch.id">{{branch.ptName}}</mat-option>
+  </mat-select> 
+</mat-form-field>
+<mat-form-field style="margin-left: 16px;">
+  <mat-label>Select warranty</mat-label>
+  <mat-select matNativeControl required [formControl]="warrControl">
+    <mat-option *ngFor="let branch of warranties" [value]="branch.id">{{branch.warrName}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field style="margin-left: 16px;">
+  <mat-label>Select Delivery schedule</mat-label>
+  <mat-select matNativeControl required [formControl]="dsControl">
+    <mat-option *ngFor="let branch of deliverySchedules" [value]="branch.id">{{branch.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
 <mat-form-field style="margin-left: 16px;">
   <mat-label>GST %</mat-label>
   <input matInput type="number" required [formControl]="gstControl" />
@@ -91,7 +117,8 @@
 </table>
 <div>
   <p style="text-align: right; margin-top: 12px; font-size: 12px;"><b>GST VALUE:</b> ₹{{getGstValue()}}</p>
-  <p style="text-align: right; margin-top: 12px; font-size: 12px;"><b>Total Cost with GST:</b> ₹{{getTotalGstValue()}}</p>
+  <p style="text-align: right; margin-top: 12px; font-size: 12px;"><b>Total Cost with GST:</b> ₹{{getTotalGstValue()}}
+  </p>
 </div>
 <div style="text-align: end; margin-top: 18px;">
   <button mat-button [mat-dialog-close]="{added:false}">Cancel</button>

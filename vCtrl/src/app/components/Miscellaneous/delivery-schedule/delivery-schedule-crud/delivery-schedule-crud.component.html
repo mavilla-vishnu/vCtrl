@@ -1,0 +1,12 @@
+<h1>Add Delivery schedule</h1>
+
+<mat-form-field class="example-full-width">
+  <mat-label>Name of Schedule</mat-label>
+  <input matInput placeholder="Ex. Immediate" [formControl]="modControl" autocomplete="off">
+</mat-form-field>
+
+
+<div style="margin-top: 12px; text-align: right;">
+  <button mat-button color="primary" (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="saveSchedule()">Save</button>
+</div>

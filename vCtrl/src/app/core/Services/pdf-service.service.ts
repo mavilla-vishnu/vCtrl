@@ -56,46 +56,46 @@ export class PdfServiceService {
         { text: '' },
         { text: material.quantity, style: 'smallNormal' },
         { text: material.unit, style: 'smallNormal' },
-        { text: ("" + material.price).split(".")[0], style: 'smallNormal' },
-        { text: ("" + material.price).split(".")[1].length<2?("0"+material.price).split(".")[1]:(""+material.price).split(".")[1] , style: 'smallNormal' },
-        { text: ("" + material.value).split(".")[0], style: 'smallNormal' },
-        { text: ("" + material.value).split(".")[1].length<2?("0"+material.value).split(".")[1]:(""+material.value).split(".")[1] , style: 'smallNormal' },
+        { text: ("" + material.price).includes(".") ? ("" + material.price).split(".")[0] : "" + material.price, style: 'smallNormal' },
+        { text: ("" + material.price).includes(".")?("" + material.price).split(".")[1]: "00", style: 'smallNormal' },
+        { text: ("" + material.value).includes(".")?("" + material.value).split(".")[0]: ("" + material.value), style: 'smallNormal' },
+        { text: ("" + material.value).includes(".")?("" + material.value).split(".")[1]: "00", style: 'smallNormal' },
       ]);
     });
     bodyMaterials.push([
-      {text: ''},
-      {text: ''},
-      {text: 'BASIC VALUE', alignment: 'right', colSpan: 6, style: 'smallBoldLfont'},
+      { text: '' },
+      { text: '' },
+      { text: 'BASIC VALUE', alignment: 'right', colSpan: 6, style: 'smallBoldLfont' },
       {},
       {},
       {},
       {},
       {},
-      {text: 'Rs. '+poModal.totalCost, alignment: 'right', colSpan: 2, style: 'smallBoldLfont'},
+      { text: 'Rs. ' + poModal.totalCost, alignment: 'right', colSpan: 2, style: 'smallBoldLfont' },
       {}
     ]);
     bodyMaterials.push([
-      {text: ''},
-      {text: ''},
-      {text: 'GST @ Rs. '+poModal.gstPercentage+'%', alignment: 'right', colSpan: 6, style: 'smalsmallBoldLfontlBold'},
+      { text: '' },
+      { text: '' },
+      { text: 'GST @ Rs. ' + poModal.gstPercentage + '%', alignment: 'right', colSpan: 6, style: 'smalsmallBoldLfontlBold' },
       {},
       {},
       {},
       {},
       {},
-      {text: 'Rs. '+poModal.totalGstValue, alignment: 'right', colSpan: 2, style: 'smallBoldLfont'},
+      { text: 'Rs. ' + poModal.totalGstValue, alignment: 'right', colSpan: 2, style: 'smallBoldLfont' },
       {}
     ]);
     bodyMaterials.push([
-      {text: ''},
-      {text: ''},
-      {text: 'TOTAL VALUE', alignment: 'right', colSpan: 6, style: 'smallBoldLfont'},
+      { text: '' },
+      { text: '' },
+      { text: 'TOTAL VALUE', alignment: 'right', colSpan: 6, style: 'smallBoldLfont' },
       {},
       {},
       {},
       {},
       {},
-      {text: 'Rs. '+poModal.totalValueWithGst, alignment: 'right', colSpan: 2, style: 'smallBoldLfont'},
+      { text: 'Rs. ' + poModal.totalValueWithGst, alignment: 'right', colSpan: 2, style: 'smallBoldLfont' },
       {}
     ]);
     console.log(bodyMaterials);
@@ -136,7 +136,32 @@ export class PdfServiceService {
 
             body: bodyMaterials
           },
+        },
+        {
+          table: {
+            // headers are automatically repeated if the table spans over multiple pages
+            // you can declare how many rows should be treated as headers
+            headerRows: 0,
+            widths: ['*', 'auto', 100, '*', '*', '*', '*', '*', '*', '*'],
 
+            body: [
+              [
+                { text: "Mode of Dispatch:  " + poModal.modeOfDispatch.name.toUpperCase(), style: "smallBold", colSpan: 4 }, {}, {}, {}, { text: ["DELIVERY SCHEDULE", { text: "\n" + poModal.deliverySchedule.name.toUpperCase(), style: "largeAndBold" }, { text: "\n\nFor V-Ctrl Solutions Private Limitd", style: "smallBold" }, { text: "\n\n\n\nFAuthorised Signatory", style: "smallBold" }], style: "normalHeader", colSpan: 6, alignment: "center", rowSpan: 5 }, {}, {}, {}, {}, {}
+              ],
+              [
+                { text: "Payment Terms:  WITHIN  " + poModal.paymentTerms.ptName.toUpperCase(), style: "smallBold", colSpan: 4 }, {}, {}, {}, { text: "", colSpan: 6 }, {}, {}, {}, {}, {}
+              ],
+              [
+                { text: "Warranty:  " + poModal.warranty.warrName.toUpperCase() + "  FROM THE DATE OF INVOICE", style: "smallBold", colSpan: 4 }, {}, {}, {}, { text: "", colSpan: 6 }, {}, {}, {}, {}, {}
+              ],
+              [
+                { text: "GENERAL INSTRUCTIONS", alignment: "center", style: "smallBold", colSpan: 4 }, {}, {}, {}, { text: "", colSpan: 6 }, {}, {}, {}, {}, {}
+              ],
+              [
+                { text: "1. Please Fax/e-mail the dispatch details to us.\n2. Please quote the order no. On all invoice & correspondence.\n3. Invoice, D.C. In duplicate should accompany with material\n4. Cenvat copy should accompany with material\n5. Goods will be received between 10 AM to 4.30 PM only.", style: "smallNormal", colSpan: 4 }, {}, {}, {}, { text: "", colSpan: 6 }, {}, {}, {}, {}, {}
+              ]
+            ]
+          },
         }
       ],
       styles: {
@@ -165,6 +190,11 @@ export class PdfServiceService {
         smallBoldLfont: {
           fontSize: 10,
           bold: true
+        },
+        largeAndBold: {
+          fontSize: 16,
+          bold: true,
+          color: 'red'
         }
       }
     };
