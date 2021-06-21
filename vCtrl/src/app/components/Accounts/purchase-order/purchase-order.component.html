@@ -58,6 +58,9 @@
         <button mat-menu-item (click)="printPo(row)">
           <mat-icon>print</mat-icon>Print as pdf
         </button>
+        <button mat-menu-item (click)="generateExcelFile(row)">
+          <mat-icon>calendar_view_month</mat-icon>Export as Excel
+        </button>
       </mat-menu>
     </td>
   </ng-container>

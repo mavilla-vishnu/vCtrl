@@ -9,6 +9,8 @@ import { PoModal } from 'src/app/core/modals/PoModal';
 import { LoadingService } from 'src/app/core/Services/loading.service';
 import { PdfServiceService } from 'src/app/core/Services/pdf-service.service';
 import { PurchaseorderCrudComponent } from './purchaseorder-crud/purchaseorder-crud.component';
+import { Workbook } from 'exceljs';
+import * as fs from 'file-saver';
 
 @Component({
   selector: 'app-purchase-order',
@@ -57,6 +59,34 @@ export class PurchaseOrderComponent implements AfterViewInit {
 
   printPo(row) {
     this.pdfService.generatePdfPurchaseModal(row);
+  }
+
+  generateExcelFile(poModal: PoModal) {
+    let workbook = new Workbook();
+    let worksheet = workbook.addWorksheet(poModal.poNumber);
+
+    worksheet.addRow({});
+    worksheet.addRow({});
+
+    worksheet.mergeCells("A3:I3");
+    const cell = worksheet.getCell('C3');
+    cell.value="V-Ctrl Solutions Private Limited ";
+    cell.alignment = { horizontal:'center'} ;
+    cell.font={name: "Bookman Old Style", size: 20, bold: true};
+
+    //Draw border
+    worksheet.getCell('C3').border = {
+      top: {style:'medium', color: {argb:'FA000000'}},
+      left: {style:'medium', color: {argb:'FA000000'}},
+      bottom: {style:'medium', color: {argb:'FA000000'}},
+      right: {style:'medium', color: {argb:'FA000000'}}
+    };
+
+
+    workbook.xlsx.writeBuffer().then((data) => {
+      let blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      fs.saveAs(blob, poModal.poNumber + '.xlsx');
+    });
   }
 
   applyFilter(event: Event) {
