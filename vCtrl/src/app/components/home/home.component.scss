@@ -4,8 +4,12 @@
 
 .mat-list-item {
   color: white;
-  height: 40px !important;
+  height: 50px !important;
   font-size: 14px;
+}
+
+.border-left {
+  border-left: 4px solid white;
 }
 
 .mat-toolbar {

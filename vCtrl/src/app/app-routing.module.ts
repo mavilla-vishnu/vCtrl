@@ -21,6 +21,7 @@ import { ModeOfDispatchComponent } from './components/Miscellaneous/mode-of-disp
 import { PaymentTermsComponent } from './components/Miscellaneous/payment-terms/payment-terms.component';
 import { WarrantyComponent } from './components/Miscellaneous/warranty/warranty.component';
 import { DeliveryScheduleComponent } from './components/Miscellaneous/delivery-schedule/delivery-schedule.component';
+import { ProductsComponent } from './components/products/products.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['home']);
@@ -51,6 +52,7 @@ const routes: Routes = [
       { path: "paymentTerms", component: PaymentTermsComponent },
       { path: "warranty", component: WarrantyComponent },
       { path: "deliverySchedule", component: DeliveryScheduleComponent },
+      { path: "products", component: ProductsComponent },
     ]
   },
   { path: "login", component: LoginComponent, data: { authGuardPipe: redirectLoggedInToItems } }

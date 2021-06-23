@@ -25,7 +25,8 @@ export class HomeComponent implements OnInit {
         { title: "Roles", url: "roles" },
         { title: "Departments", url: "departments" },
         { title: "Designations", url: "designations" },
-        { title: "Branches", url: "branches" }
+        { title: "Branches", url: "branches" },
+        {title: "Products", url: "products"}
       ],
       isExpanded: false,
       showSubmenu: false,
@@ -42,13 +43,13 @@ export class HomeComponent implements OnInit {
       showSubmenu: false,
       isShowing: true,
       showSubSubMenu: true
-    },{
+    }, {
       title: "Accounts",
       icon: "monetization_on",
       url: "",
-      children:[
-        {title: "Purchase Order", url: "po"},
-        {title: "Sale Order", url: "so"},
+      children: [
+        { title: "Purchase Order", url: "po" },
+        { title: "Sale Order", url: "so" },
       ],
       isExpanded: false,
       showSubmenu: false,
@@ -58,14 +59,14 @@ export class HomeComponent implements OnInit {
       title: "Miscellaneous",
       icon: "bubble_chart",
       url: "",
-      children:[
-        {title: "Materials", url: "materials"},
-        {title: "Vendors", url: "vendors"},
-        {title : "Customers", url: "customers"},
-        {title : "Mode of dispatch", url: "mod"},
-        {title : "Payment terms", url: "paymentTerms"},
-        {title : "Warranty", url: "warranty"},
-        {title : "Delivery schedule", url: "deliverySchedule"},
+      children: [
+        { title: "Materials", url: "materials" },
+        { title: "Vendors", url: "vendors" },
+        { title: "Customers", url: "customers" },
+        { title: "Mode of dispatch", url: "mod" },
+        { title: "Payment terms", url: "paymentTerms" },
+        { title: "Warranty", url: "warranty" },
+        { title: "Delivery schedule", url: "deliverySchedule" },
       ],
       isExpanded: false,
       showSubmenu: false,

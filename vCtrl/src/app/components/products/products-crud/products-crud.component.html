@@ -1,0 +1,28 @@
+<h1>Add Product</h1>
+
+<mat-form-field class="example-full-width">
+  <mat-label class="required">Name</mat-label>
+  <input matInput autocomplete="off">
+</mat-form-field>
+<mat-form-field class="example-full-width">
+  <mat-label>Input</mat-label>
+  <input matInput autocomplete="off" placeholder="Ex. 340-480 VAC ">
+</mat-form-field>
+<mat-form-field class="example-full-width">
+  <mat-label>Output</mat-label>
+  <input matInput autocomplete="off" placeholder="Ex. 415 VAC">
+</mat-form-field>
+<mat-form-field class="example-full-width">
+    <mat-label class=" required">Price</mat-label>
+    <input matInput type="number" autocomplete="off">
+  </mat-form-field>
+<mat-form-field class="example-full-width">
+  <mat-label>Product description</mat-label>
+  <textarea matInput autocomplete="off" placeholder="Ex. WITH EARTH FAULT PROTECTION"></textarea>
+</mat-form-field>
+
+
+<div style="margin-top: 12px; text-align: right;">
+  <button mat-button color="primary" (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="saveSchedule()">Save</button>
+</div>

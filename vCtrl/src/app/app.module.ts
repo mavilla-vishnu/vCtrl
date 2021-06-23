@@ -68,6 +68,10 @@ import { ModeOfDispatchCrudComponent } from './components/Miscellaneous/mode-of-
 import { PaymentTermsCrudComponent } from './components/Miscellaneous/payment-terms/payment-terms-crud/payment-terms-crud.component';
 import { WarrantyCrudComponent } from './components/Miscellaneous/warranty/warranty-crud/warranty-crud.component';
 import { DeliveryScheduleCrudComponent } from './components/Miscellaneous/delivery-schedule/delivery-schedule-crud/delivery-schedule-crud.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { NgApexchartsModule } from "ng-apexcharts";
+import { ProductsComponent } from './components/products/products.component';
+import { ProductsCrudComponent } from './components/products/products-crud/products-crud.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +113,9 @@ import { DeliveryScheduleCrudComponent } from './components/Miscellaneous/delive
     ModeOfDispatchCrudComponent,
     PaymentTermsCrudComponent,
     WarrantyCrudComponent,
-    DeliveryScheduleCrudComponent
+    DeliveryScheduleCrudComponent,
+    ProductsComponent,
+    ProductsCrudComponent
   ],
   exports: [
     AngularFireAuthModule
@@ -142,12 +148,14 @@ import { DeliveryScheduleCrudComponent } from './components/Miscellaneous/delive
     MatSlideToggleModule,
     AngularFirestoreModule,
     MatMenuModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatGridListModule,
+    NgApexchartsModule
   ],
   providers: [
     AngularFireAuthGuard,
     MatDatepickerModule,
-    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   bootstrap: [AppComponent]
 })

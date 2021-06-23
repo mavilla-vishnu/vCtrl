@@ -1,32 +1,38 @@
 <mat-toolbar class="mat-elevation-z8">
-  <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
-  <img src="../.././../assets/logo//logo_new_transparent.png" class="example-app-name" style="height: 48px;"/>
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <img src="../.././../assets/logo//logo_new_transparent.png" class="example-app-name" style="height: 48px;"
+    routerLink="../" />
   <span class="example-spacer"></span>
   <button mat-icon-button class="example-icon" (click)="logout()">Logout</button>
 </mat-toolbar>
-<mat-sidenav-container class="example-container " autosize >
+<mat-sidenav-container class="example-container " autosize>
   <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true">
+    <mat-nav-list>
+      <mat-list-item class="parent border-left" style="color: white;" routerLink="../">
+        <span class="full-width">Home</span>
+        <mat-icon style="color: white;" mat-list-icon>home</mat-icon>
+      </mat-list-item>
+    </mat-nav-list>
     <mat-nav-list *ngFor="let menu of subMenu">
-      <mat-list-item (click)="menu.showSubmenu = !menu.showSubmenu" class="parent" style="color: white;">
+      <mat-list-item (click)="menu.showSubmenu = !menu.showSubmenu" class="parent border-left" style="color: white;">
         <span class="full-width">{{menu.title}}</span>
         <mat-icon style="color: white;" mat-list-icon>{{menu.icon}}</mat-icon>
-        <mat-icon class="menu-button" [ngClass]="{'rotated' : menu.showSubmenu}">expand_more
+        <mat-icon class="menu-button" [ngClass]="{'rotated' : menu.showSubmenu}" *ngIf="menu.children.length>0">
+          expand_more
         </mat-icon>
       </mat-list-item>
       <div class="submenu" *ngIf="menu.showSubmenu&&menu.children.length>0">
-        <a mat-list-item *ngFor="let child of menu.children" [routerLink]="child.url"><mat-icon>chevron_right</mat-icon>{{child.title}}</a>
+        <a mat-list-item *ngFor="let child of menu.children" [routerLink]="child.url">
+          <mat-icon>bolt</mat-icon>{{child.title}}
+        </a>
       </div>
     </mat-nav-list>
     <mat-nav-list>
     </mat-nav-list>
   </mat-sidenav>
 
-  <div class="example-sidenav-content">
-    <mat-card>
-      <mat-card-content>
-        <router-outlet></router-outlet>
-      </mat-card-content>
-    </mat-card>
-  </div>
+  <router-outlet></router-outlet>
 
 </mat-sidenav-container>
