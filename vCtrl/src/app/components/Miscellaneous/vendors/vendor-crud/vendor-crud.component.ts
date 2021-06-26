@@ -26,7 +26,7 @@ export class VendorCrudComponent implements OnInit {
     this.vendorForm = new FormGroup({
       name: new FormControl("", [Validators.required]),
       cin_no: new FormControl("", [Validators.required]),
-      gst_no: new FormControl("", [Validators.required]),
+      gst_no: new FormControl(""),
       addr1: new FormControl("", [Validators.required]),
       addr2: new FormControl("", [Validators.required]),
       city: new FormControl("", [Validators.required]),
@@ -48,6 +48,10 @@ export class VendorCrudComponent implements OnInit {
   save() {
     if (!this.vendorForm.valid) {
       this.snackbar.open("Please enter valid data", "OK", { duration: 3000 });
+      return;
+    }
+    if (this.vendorForm.controls["gst_no"].value != "" && !this.validateGst(this.vendorForm.controls["gst_no"].value)) {
+      this.snackbar.open("Invalid GSTIN entered. It's also optional!", "OK", { duration: 3000 });
       return;
     }
     this.vendorModal = {
@@ -85,6 +89,11 @@ export class VendorCrudComponent implements OnInit {
 
   cancel() {
     this.dialogRef.close({ added: false });
+  }
+
+  validateGst(gstValue) {
+    var reggst = /^([0-9]){2}([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}([0-9]){1}([a-zA-Z]){1}([0-9]){1}?$/;
+    return reggst.test(gstValue)
   }
 
 }

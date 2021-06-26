@@ -1,26 +1,27 @@
-<h1>Add Product</h1>
+<h1>{{product? 'Update Product': 'Add Product'}}</h1>
 
-<mat-form-field class="example-full-width">
-  <mat-label class="required">Name</mat-label>
-  <input matInput autocomplete="off">
-</mat-form-field>
-<mat-form-field class="example-full-width">
-  <mat-label>Input</mat-label>
-  <input matInput autocomplete="off" placeholder="Ex. 340-480 VAC ">
-</mat-form-field>
-<mat-form-field class="example-full-width">
-  <mat-label>Output</mat-label>
-  <input matInput autocomplete="off" placeholder="Ex. 415 VAC">
-</mat-form-field>
-<mat-form-field class="example-full-width">
-    <mat-label class=" required">Price</mat-label>
-    <input matInput type="number" autocomplete="off">
+<form [formGroup]="productGroup">
+  <mat-form-field class="example-full-width">
+    <mat-label class="required">Name</mat-label>
+    <input matInput autocomplete="off" formControlName="name">
   </mat-form-field>
-<mat-form-field class="example-full-width">
-  <mat-label>Product description</mat-label>
-  <textarea matInput autocomplete="off" placeholder="Ex. WITH EARTH FAULT PROTECTION"></textarea>
-</mat-form-field>
-
+  <mat-form-field class="example-full-width">
+    <mat-label>Input</mat-label>
+    <input matInput autocomplete="off" formControlName="input" placeholder="Ex. 340-480 VAC ">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Output</mat-label>
+    <input matInput autocomplete="off" placeholder="Ex. 415 VAC" formControlName="output">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label class=" required">Price</mat-label>
+    <input matInput type="number" autocomplete="off" formControlName="price">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Product description</mat-label>
+    <textarea matInput autocomplete="off" placeholder="Ex. WITH EARTH FAULT PROTECTION" formControlName="description"></textarea>
+  </mat-form-field>
+</form>
 
 <div style="margin-top: 12px; text-align: right;">
   <button mat-button color="primary" (click)="cancel()">Cancel</button>

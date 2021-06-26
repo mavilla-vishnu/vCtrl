@@ -28,7 +28,7 @@ export class PaymentTermsCrudComponent implements OnInit {
   }
 
   saveTerm() {
-    if (this.withinControl.value == "") {
+    if (this.withinControl.value == ""||this.withinControl.value == null) {
       this.snackbar.open("Please enter within time in number", "OK", { duration: 2000 });
       return;
     }

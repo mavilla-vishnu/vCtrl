@@ -1,1 +1,54 @@
-<p>customers works!</p>
+<div class="example-sidenav-content">
+  <div style="display: flex;">
+    <h1>Customers</h1>
+    <span class="example-spacer"></span>
+    <button mat-button color="primary" (click)="addCustomer()">
+      <mat-icon>add</mat-icon>Add Customer
+    </button>
+  </div>
+  <mat-form-field>
+    <mat-icon matPrefix style="font-size: 14px; margin-right: 6px;">search</mat-icon>
+    <mat-label>Search customer...</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input>
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" matSort width="100%">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="gstin">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> GSTIN </th>
+      <td mat-cell *matCellDef="let row"> {{row.gstin?row.gstin: 'NA'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="state">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> State </th>
+      <td mat-cell *matCellDef="let row"> {{row.state}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+      <td mat-cell *matCellDef="let row; let i=index">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="editCustomer(i)">Edit</button>
+          <button mat-menu-item (click)="deleteCustomer(i)">Delete</button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4" style="text-align: center;">No data found!</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

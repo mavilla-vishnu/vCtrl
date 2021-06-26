@@ -1,1 +1,35 @@
-<p>customer-crud works!</p>
+<h1>{{data==null?"Add Customer": "Update Customer"}}</h1>
+<form [formGroup]="customerForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>Name</mat-label>
+    <input matInput appTitleCase formControlName="name" autocomplete="off">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Address line 1</mat-label>
+    <input matInput appTitleCase formControlName="addr1" autocomplete="off">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Address line 2</mat-label>
+    <input matInput appTitleCase formControlName="addr2" autocomplete="off">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>GSTIN (Optional)</mat-label>
+    <input matInput appTitleCase formControlName="gstin" autocomplete="off">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>City</mat-label>
+    <input matInput appTitleCase formControlName="city" autocomplete="off">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>State</mat-label>
+    <input matInput appTitleCase formControlName="state" autocomplete="off">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Pincode</mat-label>
+    <input matInput appTitleCase formControlName="pincode" autocomplete="off" type="number">
+  </mat-form-field>
+</form>
+<div style="text-align: right;">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="saveCustomer()">{{data==null?'Save': 'Update'}}</button>
+</div>
