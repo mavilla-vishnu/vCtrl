@@ -21,8 +21,10 @@
     <input matInput appTitleCase formControlName="city" autocomplete="off">
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <mat-label>State</mat-label>
-    <input matInput appTitleCase formControlName="state" autocomplete="off">
+    <mat-label>Select state</mat-label>
+    <mat-select formControlName="state">
+      <mat-option *ngFor="let state of states" [value]="state.id">{{state.name}}</mat-option>
+    </mat-select>
   </mat-form-field>
   <mat-form-field class="example-full-width">
     <mat-label>Pincode</mat-label>

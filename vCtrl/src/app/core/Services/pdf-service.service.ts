@@ -57,9 +57,9 @@ export class PdfServiceService {
         { text: material.quantity, style: 'smallNormal' },
         { text: material.unit, style: 'smallNormal' },
         { text: ("" + material.price).includes(".") ? ("" + material.price).split(".")[0] : "" + material.price, style: 'smallNormal' },
-        { text: ("" + material.price).includes(".")?("" + material.price).split(".")[1]: "00", style: 'smallNormal' },
-        { text: ("" + material.value).includes(".")?("" + material.value).split(".")[0]: ("" + material.value), style: 'smallNormal' },
-        { text: ("" + material.value).includes(".")?("" + material.value).split(".")[1]: "00", style: 'smallNormal' },
+        { text: ("" + material.price).includes(".") ? ("" + material.price).split(".")[1] : "00", style: 'smallNormal' },
+        { text: ("" + material.value).includes(".") ? ("" + material.value).split(".")[0] : ("" + material.value), style: 'smallNormal' },
+        { text: ("" + material.value).includes(".") ? ("" + material.value).split(".")[1] : "00", style: 'smallNormal' },
       ]);
     });
     bodyMaterials.push([
@@ -103,7 +103,7 @@ export class PdfServiceService {
       content: [
         { image: await this.getBase64ImageFromURL('../../../assets/logo/logo_new.png'), width: 70, height: 35, alignment: 'center' },
         { text: 'V-Ctrl Solutions Private Limited', style: 'normalHeader', alignment: 'center', margin: [0, 10, 0, 10], decoration: 'underline' },
-        { text: '' + poModal.branch.branchhDescription, style: 'normalText', alignment: 'center' },
+        { text: '' + poModal.branch.branchhDescription + "\n" + poModal.branch.city + ", " + poModal.branch.state.name + "-" + poModal.branch.pincode, style: 'normalText', alignment: 'center' },
         { text: 'Email: ' + poModal.branch.branchEmail + ", Phone: " + poModal.branch.branchContact, style: 'normalText', alignment: 'center' },
         { text: 'PURCHASE ORDER', style: 'header', margin: [0, 10, 0, 10] },
         {

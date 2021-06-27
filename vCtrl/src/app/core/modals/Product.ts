@@ -4,5 +4,6 @@ export interface Product {
     input: string,
     output: string,
     price: number,
-    productDescription: string
+    productDescription: string,
+    unit: string
 }

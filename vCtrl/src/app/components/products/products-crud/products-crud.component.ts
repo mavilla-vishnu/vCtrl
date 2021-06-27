@@ -23,6 +23,7 @@ export class ProductsCrudComponent implements OnInit {
       output: new FormControl(''),
       price: new FormControl('', [Validators.required]),
       description: new FormControl(''),
+      unit: new FormControl('', [Validators.required])
     });
     console.log(this.data);
     this.product = this.data;
@@ -32,6 +33,7 @@ export class ProductsCrudComponent implements OnInit {
       this.productGroup.controls["output"].setValue(this.product.output);
       this.productGroup.controls["price"].setValue(this.product.price);
       this.productGroup.controls["description"].setValue(this.product.productDescription);
+      this.productGroup.controls["unit"].setValue(this.product.unit);
     }
   }
 
@@ -49,7 +51,8 @@ export class ProductsCrudComponent implements OnInit {
       productDescription: this.productGroup.controls["description"].value,
       input: this.productGroup.controls["input"].value,
       output: this.productGroup.controls["output"].value,
-      price: this.productGroup.controls["price"].value
+      price: this.productGroup.controls["price"].value,
+      unit: this.productGroup.controls["unit"].value,
     };
     if (this.product) {
       this.loadingService.presentLoading("Updating product...");

@@ -72,6 +72,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { ProductsComponent } from './components/products/products.component';
 import { ProductsCrudComponent } from './components/products/products-crud/products-crud.component';
+import { SalesOrderCrudComponent } from './components/Accounts/sales-order/sales-order-crud/sales-order-crud.component';
 
 @NgModule({
   declarations: [
@@ -115,7 +116,8 @@ import { ProductsCrudComponent } from './components/products/products-crud/produ
     WarrantyCrudComponent,
     DeliveryScheduleCrudComponent,
     ProductsComponent,
-    ProductsCrudComponent
+    ProductsCrudComponent,
+    SalesOrderCrudComponent
   ],
   exports: [
     AngularFireAuthModule

@@ -5,7 +5,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BranchModal } from 'src/app/core/modals/BranchModal';
 import { DepartmentModal } from 'src/app/core/modals/DepartmentModal';
+import { State } from 'src/app/core/modals/States';
 import { LoadingService } from 'src/app/core/Services/loading.service';
+import { StatesproviderService } from 'src/app/core/Services/statesprovider.service';
 
 @Component({
   selector: 'app-branches-crud',
@@ -16,15 +18,20 @@ export class BranchesCRUDComponent implements OnInit {
   branchForm: FormGroup;
   branch: BranchModal;
   title = "Add Branch";
-  constructor(private snackbar: MatSnackBar, private afs: AngularFirestore, public dialogRef: MatDialogRef<BranchesCRUDComponent>,
+  states: State[] = [];
+  constructor(private stateervice: StatesproviderService, private snackbar: MatSnackBar, private afs: AngularFirestore, public dialogRef: MatDialogRef<BranchesCRUDComponent>,
     @Inject(MAT_DIALOG_DATA) public data: BranchModal,
     private loadingService: LoadingService) { }
 
   ngOnInit(): void {
+    this.states = this.stateervice.getStates();
     this.branchForm = new FormGroup({
       branchName: new FormControl('', [Validators.required]),
       branchGstin: new FormControl('', [Validators.pattern("^([0][1-9]|[1-2][0-9]|[3][0-7])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$")]),
       branchhDescription: new FormControl('', [Validators.required]),
+      city: new FormControl('', [Validators.required]),
+      state: new FormControl('', [Validators.required]),
+      pincode: new FormControl('', [Validators.required]),
       branchEmail: new FormControl('', [Validators.required]),
       branchContact: new FormControl('', [Validators.required])
     });
@@ -54,7 +61,10 @@ export class BranchesCRUDComponent implements OnInit {
         branchGstin: this.branchForm.controls["branchGstin"].value,
         branchhDescription: this.branchForm.controls["branchhDescription"].value,
         branchEmail: this.branchForm.controls["branchEmail"].value,
-        branchContact: this.branchForm.controls["branchContact"].value
+        branchContact: this.branchForm.controls["branchContact"].value,
+        city: this.branchForm.controls["city"].value,
+        state: this.states[this.states.findIndex(st => st.id == this.branchForm.controls["state"].value)],
+        pincode: this.branchForm.controls["pincode"].value,
       };
       this.loadingService.presentLoading("Saving branch...");
 
@@ -72,7 +82,10 @@ export class BranchesCRUDComponent implements OnInit {
         branchGstin: this.branchForm.controls["branchGstin"].value,
         branchhDescription: this.branchForm.controls["branchhDescription"].value,
         branchEmail: this.branchForm.controls["branchEmail"].value,
-        branchContact: this.branchForm.controls["branchContact"].value
+        branchContact: this.branchForm.controls["branchContact"].value,
+        city: this.branchForm.controls["city"].value,
+        state: this.states[this.states.findIndex(st => st.id == this.branchForm.controls["state"].value)],
+        pincode: this.branchForm.controls["pincode"].value,
       };
       this.loadingService.presentLoading("Updating branch...");
 

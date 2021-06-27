@@ -4,7 +4,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Customer } from 'src/app/core/modals/Customer';
+import { State } from 'src/app/core/modals/States';
 import { LoadingService } from 'src/app/core/Services/loading.service';
+import { StatesproviderService } from 'src/app/core/Services/statesprovider.service';
 
 @Component({
   selector: 'app-customer-crud',
@@ -13,9 +15,11 @@ import { LoadingService } from 'src/app/core/Services/loading.service';
 })
 export class CustomerCrudComponent implements OnInit {
   customerForm: FormGroup;
-  constructor(private dialogRef: MatDialogRef<CustomerCrudComponent>, private snackbar: MatSnackBar, private afs: AngularFirestore, private loadingService: LoadingService, @Inject(MAT_DIALOG_DATA) public data: Customer) { }
+  states: State[] = [];
+  constructor(private stateervice: StatesproviderService, private dialogRef: MatDialogRef<CustomerCrudComponent>, private snackbar: MatSnackBar, private afs: AngularFirestore, private loadingService: LoadingService, @Inject(MAT_DIALOG_DATA) public data: Customer) { }
 
   ngOnInit(): void {
+    this.states = this.stateervice.getStates();
     this.customerForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       addr1: new FormControl('', [Validators.required]),
@@ -31,7 +35,7 @@ export class CustomerCrudComponent implements OnInit {
       this.customerForm.controls["addr2"].setValue(this.data.addr2);
       this.customerForm.controls["gstin"].setValue(this.data.gstin);
       this.customerForm.controls["city"].setValue(this.data.city);
-      this.customerForm.controls["state"].setValue(this.data.state);
+      this.customerForm.controls["state"].setValue(this.data.state.id);
       this.customerForm.controls["pincode"].setValue(this.data.pincode);
     }
   }
@@ -45,19 +49,20 @@ export class CustomerCrudComponent implements OnInit {
       this.snackbar.open("Invalid GSTIN entered. It's also optional!", "OK", { duration: 3000 });
       return;
     }
-
+    var id = this.afs.createId();
     var custModal: Customer = {
       name: this.customerForm.controls["name"].value,
       addr1: this.customerForm.controls["addr1"].value,
       addr2: this.customerForm.controls["addr2"].value,
       gstin: this.customerForm.controls["gstin"].value,
       city: this.customerForm.controls["city"].value,
-      state: this.customerForm.controls["state"].value,
+      state: this.states[this.states.findIndex(st => st.id == this.customerForm.controls["state"].value)],
       pincode: this.customerForm.controls["pincode"].value
     };
     if (this.data == null) {
+      custModal.id=id,
       this.loadingService.presentLoading("Adding customer...")
-      this.afs.collection("customers").add(custModal).then(resp => {
+      this.afs.collection("customers").doc(id).set(custModal).then(resp => {
         this.dialogRef.close({ added: true });
         this.snackbar.open("Customer saved successfully!", "OK", { duration: 3000 });
         this.loadingService.dismissLoading();
@@ -66,6 +71,7 @@ export class CustomerCrudComponent implements OnInit {
         this.snackbar.open("Error saving customer!", "OK", { duration: 3000 });
       });
     } else {
+      custModal.id=this.data.id,
       this.loadingService.presentLoading("Updating customer...")
       this.afs.collection("customers").doc(this.data.id).set(custModal).then(resp => {
         this.dialogRef.close({ added: true });
