@@ -52,7 +52,7 @@ export class CustomersComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.added) {
+      if (result!=undefined&&result.added) {
         this.getCustomers();
       }
     });

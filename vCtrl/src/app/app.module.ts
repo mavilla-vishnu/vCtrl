@@ -73,6 +73,8 @@ import { NgApexchartsModule } from "ng-apexcharts";
 import { ProductsComponent } from './components/products/products.component';
 import { ProductsCrudComponent } from './components/products/products-crud/products-crud.component';
 import { SalesOrderCrudComponent } from './components/Accounts/sales-order/sales-order-crud/sales-order-crud.component';
+import { BankAccountsComponent } from './components/bank-accounts/bank-accounts.component';
+import { BankAccountsCrudComponent } from './components/bank-accounts/bank-accounts-crud/bank-accounts-crud.component';
 
 @NgModule({
   declarations: [
@@ -117,7 +119,9 @@ import { SalesOrderCrudComponent } from './components/Accounts/sales-order/sales
     DeliveryScheduleCrudComponent,
     ProductsComponent,
     ProductsCrudComponent,
-    SalesOrderCrudComponent
+    SalesOrderCrudComponent,
+    BankAccountsComponent,
+    BankAccountsCrudComponent
   ],
   exports: [
     AngularFireAuthModule

@@ -22,6 +22,7 @@ import { PaymentTermsComponent } from './components/Miscellaneous/payment-terms/
 import { WarrantyComponent } from './components/Miscellaneous/warranty/warranty.component';
 import { DeliveryScheduleComponent } from './components/Miscellaneous/delivery-schedule/delivery-schedule.component';
 import { ProductsComponent } from './components/products/products.component';
+import { BankAccountsComponent } from './components/bank-accounts/bank-accounts.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['home']);
@@ -53,6 +54,7 @@ const routes: Routes = [
       { path: "warranty", component: WarrantyComponent },
       { path: "deliverySchedule", component: DeliveryScheduleComponent },
       { path: "products", component: ProductsComponent },
+      { path: "accounts", component: BankAccountsComponent },
     ]
   },
   { path: "login", component: LoginComponent, data: { authGuardPipe: redirectLoggedInToItems } }

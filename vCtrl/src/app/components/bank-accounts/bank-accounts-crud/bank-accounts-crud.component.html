@@ -1,0 +1,46 @@
+<h1>Add bank account</h1>
+<form [formGroup]="accountForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>Account name</mat-label>
+    <input matInput formControlName="accountName">
+    <mat-error
+      *ngIf="accountForm.controls['accountName'].hasError('required')&&accountForm.controls['accountName'].touched||accountForm.controls['accountName'].dirty">
+      Enter valid Accounts name</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Bank name</mat-label>
+    <input matInput formControlName="bankName">
+    <mat-error
+      *ngIf="accountForm.controls['bankName'].hasError('required')&&accountForm.controls['bankName'].touched||accountForm.controls['bankName'].dirty">
+      Enter valid bank name</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Account number</mat-label>
+    <input matInput formControlName="accontNo" type="number">
+    <mat-error
+      *ngIf="accountForm.controls['accontNo'].hasError('required')&&accountForm.controls['accontNo'].touched||accountForm.controls['accontNo'].dirty">
+      Enter valid account number</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Branch</mat-label>
+    <input matInput formControlName="branch">
+    <mat-error
+      *ngIf="accountForm.controls['branch'].hasError('required')&&accountForm.controls['branch'].touched||accountForm.controls['branch'].dirty">
+      Enter valid Branch name</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>IFSC code</mat-label>
+    <input matInput formControlName="ifsc">
+    <mat-error
+      *ngIf="accountForm.controls['ifsc'].hasError('required')&&accountForm.controls['ifsc'].touched||accountForm.controls['ifsc'].dirty">
+      Enter valid IFSC code</mat-error>
+  </mat-form-field>
+</form>
+<div>
+  <button mat-raised-button color="primary" class="float-right" (click)="saveAccount()">Save</button>
+  <button mat-button class="float-right" (click)="cancel()">Cancel</button>
+</div>

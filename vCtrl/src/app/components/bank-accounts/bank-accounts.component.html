@@ -1,0 +1,62 @@
+<div class="example-sidenav-content">
+  <div style="display: flex;">
+    <h1>Bank Accounts</h1>
+    <span class="example-spacer"></span>
+    <button mat-button color="primary" (click)="addAccount()">
+      <mat-icon>add</mat-icon>Add Account
+    </button>
+  </div>
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input>
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" matSort width="100%">
+
+    <ng-container matColumnDef="bankName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Bank Name </th>
+      <td mat-cell *matCellDef="let row"> {{row.bankName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="accontNo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Account no </th>
+      <td mat-cell *matCellDef="let row"> {{row.accontNo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="branch">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Branch </th>
+      <td mat-cell *matCellDef="let row"> {{row.branch}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ifsc">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> IFSC </th>
+      <td mat-cell *matCellDef="let row"> {{row.ifsc}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actons">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 10%;"> Actons </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="editBranch(row)">
+            <mat-icon>edit</mat-icon>Edit branch
+          </button>
+          <button mat-menu-item (click)="deleteBranch(row)">
+            <mat-icon>delete</mat-icon>Delete branch
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4" style="text-align: center;">No data found!</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
