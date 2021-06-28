@@ -43,6 +43,8 @@ export class MaterialCrudComponent implements OnInit {
       name: this.materialForm.controls["name"].value,
       unit: this.materialForm.controls["unit"].value.toUpperCase(),
       price: parseFloat(this.materialForm.controls["price"].value),
+      available: 0,
+      timeline: []
     };
     if (this.data == null) {
       this.loadingService.presentLoading("Adding material...");

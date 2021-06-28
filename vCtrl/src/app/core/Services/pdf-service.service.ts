@@ -21,7 +21,7 @@ export class PdfServiceService {
 
   async generatePdfPurchaseModal(poModal: PoModal) {
     await this.loadPdfMaker();
-    var poDate = new Date(poModal.poDate.toDate());
+    var poDate = new Date(poModal.poDate);
     var poString = poDate.getDate() + "-" + (poDate.getMonth() + 1) + "-" + poDate.getFullYear();
     var bodyMaterials = [];
     bodyMaterials.push([

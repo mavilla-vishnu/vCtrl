@@ -75,6 +75,10 @@ import { ProductsCrudComponent } from './components/products/products-crud/produ
 import { SalesOrderCrudComponent } from './components/Accounts/sales-order/sales-order-crud/sales-order-crud.component';
 import { BankAccountsComponent } from './components/bank-accounts/bank-accounts.component';
 import { BankAccountsCrudComponent } from './components/bank-accounts/bank-accounts-crud/bank-accounts-crud.component';
+import { MaterialsReceivedComponent } from './components/Miscellaneous/materials/materials-received/materials-received.component';
+import { StockmanagementComponent } from './components/stockmanagement/stockmanagement.component';
+import { MaterialTimelineComponent } from './components/material-timeline/material-timeline.component';
+import { MglTimelineModule } from 'angular-mgl-timeline';
 
 @NgModule({
   declarations: [
@@ -121,7 +125,10 @@ import { BankAccountsCrudComponent } from './components/bank-accounts/bank-accou
     ProductsCrudComponent,
     SalesOrderCrudComponent,
     BankAccountsComponent,
-    BankAccountsCrudComponent
+    BankAccountsCrudComponent,
+    MaterialsReceivedComponent,
+    StockmanagementComponent,
+    MaterialTimelineComponent
   ],
   exports: [
     AngularFireAuthModule
@@ -156,7 +163,8 @@ import { BankAccountsCrudComponent } from './components/bank-accounts/bank-accou
     MatMenuModule,
     MatAutocompleteModule,
     MatGridListModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    MglTimelineModule
   ],
   providers: [
     AngularFireAuthGuard,

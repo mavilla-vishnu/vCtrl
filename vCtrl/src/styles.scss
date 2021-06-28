@@ -141,7 +141,32 @@ h1 {
 mat-sidenav-content {
   background-color: #f8f8fb;
 }
+
 .required:after {
-  content:" *";
+  content: " *";
   color: red;
+}
+
+.ngb-alert {
+  color: white;
+  background: #ff00008f;
+  border: 1px solid red;
+  padding: 4px;
+  border-radius: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+mgl-timeline-entry{
+  margin-left: 26px !important;
+}
+
+.mgl-timeline-line{
+  width: 5px !important;
+}
+
+mgl-timeline-entry-header{
+  text-align: left !important;
+  background-color: white;
+  box-shadow: 0 4px 8px 2px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
 }

@@ -7,7 +7,8 @@ import { VendorModal } from "./VendorModal";
 import { Warranty } from "./WarrantyModal";
 
 export interface PoModal {
-    poDate?: any,
+    id?:string,
+    poDate?: string,
     vendor?: VendorModal,
     branch?: BranchModal,
     materials?: MaterialModal[],
@@ -20,5 +21,6 @@ export interface PoModal {
     modeOfDispatch?:ModeOfDispatch,
     paymentTerms?: PaymentTerms,
     warranty?: Warranty,
-    deliverySchedule?: DeliverySchedules
+    deliverySchedule?: DeliverySchedules,
+    stockUpdated: boolean
 }

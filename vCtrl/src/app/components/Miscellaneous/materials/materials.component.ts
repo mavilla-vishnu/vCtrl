@@ -17,7 +17,7 @@ import { MaterialCrudComponent } from './material-crud/material-crud.component';
   styleUrls: ['./materials.component.scss']
 })
 export class MaterialsComponent implements OnInit, AfterViewInit {
-  materials: MaterialModal[] = [];
+  materials: MaterialModal[] = [];  
   dataSource: MatTableDataSource<MaterialModal>;
   displayedColumns: string[] = ['name', 'unit', 'price', 'actions'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -44,6 +44,7 @@ export class MaterialsComponent implements OnInit, AfterViewInit {
         materialTemp.id = material.id;
         this.materials.push(materialTemp);
       });
+      console.log(this.materials);
       this.dataSource = new MatTableDataSource(this.materials);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

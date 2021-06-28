@@ -18,7 +18,7 @@ import { ProductsCrudComponent } from './products-crud/products-crud.component';
 export class ProductsComponent implements OnInit, AfterViewInit {
   products: Product[] = [];
   dataSource: MatTableDataSource<Product>;
-  displayedColumns: string[] = ['name', 'price', 'productDescription', 'actions'];
+  displayedColumns: string[] = ['hsnCode', 'name', 'price', 'productDescription', 'actions'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 

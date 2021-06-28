@@ -16,6 +16,7 @@ import { LoadingService } from 'src/app/core/Services/loading.service';
 export class PurchaseorderAddMaterialComponent implements OnInit {
   myControl = new FormControl();
   quantityControl = new FormControl();
+  priceControl = new FormControl();
   materials: MaterialModal[] = [];
   filteredOptions: Observable<MaterialModal[]>;
   selectedMaterial: MaterialModal;
@@ -30,13 +31,20 @@ export class PurchaseorderAddMaterialComponent implements OnInit {
 
   ngOnInit() {
     this.getMaterials();
-    console.log(this.data);
     this.quantityControl.valueChanges.subscribe(value => {
       var quantity = parseFloat(value);
-      if (quantity > 0 && this.selectedMaterial) {
-        this.amount = parseFloat((this.selectedMaterial.price * quantity).toFixed(2));
+      if (quantity > 0 && this.selectedMaterial && parseFloat(this.priceControl.value) > 0) {
+        this.amount = parseFloat((parseFloat(this.priceControl.value) * quantity).toFixed(2));
         this.selectedMaterial.quantity = quantity;
-        this.selectedMaterial.value=this.amount;
+        this.selectedMaterial.value = this.amount;
+      }
+    });
+    this.priceControl.valueChanges.subscribe(value => {
+      var price = parseFloat(value);
+      if (price > 0 && this.selectedMaterial && parseInt(this.quantityControl.value) > 0) {
+        this.amount = price* parseFloat(parseFloat(this.quantityControl.value).toFixed(2));
+        this.selectedMaterial.price = price;
+        this.selectedMaterial.value = this.amount;
       }
     });
     this.myControl.valueChanges.subscribe((value) => {
@@ -60,7 +68,11 @@ export class PurchaseorderAddMaterialComponent implements OnInit {
       this.toaster.open("Please enter valid quantity!", "OK", { duration: 2000 });
       return;
     }
-
+    if (parseFloat(this.priceControl.value) <= 0 || this.priceControl.value == "") {
+      this.toaster.open("Please enter valid material price!", "OK", { duration: 2000 });
+      return;
+    }
+    this.selectedMaterial.price = parseFloat(this.priceControl.value);
     this.dialogRef.close({ added: true, data: this.selectedMaterial });
   }
 
@@ -94,10 +106,11 @@ export class PurchaseorderAddMaterialComponent implements OnInit {
         materialAdded = true;
       }
     });
-    console.log(materialAdded);
+
     if (!materialAdded) {
       this.selectedMaterial = event.option.value;
       this.quantityControl.setValue("");
+      this.priceControl.setValue(this.selectedMaterial.price);
       this.amount = 0.00;
     } else {
       this.toaster.open("Material already added!", "OK", { duration: 2000 });

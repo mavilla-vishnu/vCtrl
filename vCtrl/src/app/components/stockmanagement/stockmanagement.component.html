@@ -1,22 +1,19 @@
 <div class="example-sidenav-content">
   <div style="display: flex;">
-    <h1>Products</h1>
+    <h1>Stock management</h1>
     <span class="example-spacer"></span>
-    <button mat-button color="primary" (click)="addProduct()">
-      <mat-icon>add</mat-icon>Add Product
-    </button>
+    <!-- <button mat-button color="primary" (click)="addAccount()">
+        <mat-icon>add</mat-icon>Add Account
+      </button> -->
   </div>
+
   <mat-form-field>
     <mat-icon matPrefix style="font-size: 14px; margin-right: 6px;">search</mat-icon>
-    <mat-label>Search product...</mat-label>
+    <mat-label>Search material...</mat-label>
     <input matInput (keyup)="applyFilter($event)" #input>
   </mat-form-field>
-  <table mat-table [dataSource]="dataSource" matSort width="100%">
 
-    <ng-container matColumnDef="hsnCode">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> HSN Code </th>
-      <td mat-cell *matCellDef="let row"> {{row.hsnCode}} </td>
-    </ng-container>
+  <table mat-table [dataSource]="dataSource" matSort width="100%">
 
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
@@ -28,9 +25,9 @@
       <td mat-cell *matCellDef="let row">₹ {{row.price}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="productDescription">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-      <td mat-cell *matCellDef="let row"> ₹{{row.productDescription}} </td>
+    <ng-container matColumnDef="available">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Available </th>
+      <td mat-cell *matCellDef="let row"> {{row.available}} </td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
@@ -40,8 +37,10 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="editProduct(i)">Edit</button>
-          <button mat-menu-item (click)="deleteProduct(i)">Delete</button>
+          <button mat-menu-item (click)="viewTimeLine(i)">
+            <mat-icon>timeline</mat-icon>
+            <span>View Stock Timeline</span>
+          </button>
         </mat-menu>
       </td>
     </ng-container>

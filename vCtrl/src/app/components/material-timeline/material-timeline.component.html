@@ -1,0 +1,19 @@
+<h1>Timeline</h1>
+
+<mgl-timeline>
+  <mgl-timeline-entry *ngFor="let tl of timeLineArray">
+    <mgl-timeline-entry-header>
+      {{tl.type==0?'Material moved': 'Material added'}} - {{tl.quantity}}
+      <div style="display: flex;">
+        <p class="normal">PO Number: {{tl.poNumber}}</p>
+        <p class="sub-header">PO Date: {{tl.poDate | date: "dd/MM/yyyy"}}</p>
+      </div>
+      <div style="display: flex;">
+        <p class="usual ">Previously available: {{tl.previouslyAvailable}},   </p>
+        <p class="usual">  Newly added: {{tl.quantity}}</p>
+      </div>
+    </mgl-timeline-entry-header>
+    <mgl-timeline-entry-dot size="20"
+      [ngStyle]="tl.type==0?{'background-color': 'red'} : {'background-color': 'green'}"></mgl-timeline-entry-dot>
+  </mgl-timeline-entry>
+</mgl-timeline>

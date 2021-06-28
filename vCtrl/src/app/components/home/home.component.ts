@@ -26,8 +26,9 @@ export class HomeComponent implements OnInit {
         { title: "Departments", url: "departments" },
         { title: "Designations", url: "designations" },
         { title: "Branches", url: "branches" },
-        {title: "Products", url: "products"},
-        {title: "Bank Accounts", url: "accounts"}
+        { title: "Products", url: "products" },
+        { title: "Bank Accounts", url: "accounts" },
+        { title: "Stock Management", url: "stock-management" },
       ],
       isExpanded: false,
       showSubmenu: false,

@@ -11,6 +11,9 @@ import { PdfServiceService } from 'src/app/core/Services/pdf-service.service';
 import { PurchaseorderCrudComponent } from './purchaseorder-crud/purchaseorder-crud.component';
 import { Workbook } from 'exceljs';
 import * as fs from 'file-saver';
+import { DeleteConfirmationComponent } from 'src/app/partials/delete-confirmation/delete-confirmation.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MaterialsReceivedComponent } from '../../Miscellaneous/materials/materials-received/materials-received.component';
 
 @Component({
   selector: 'app-purchase-order',
@@ -23,7 +26,7 @@ export class PurchaseOrderComponent implements AfterViewInit {
   displayedColumns: string[] = ['poNumber', 'poDate', 'totalQuantity', 'totalCost', 'totalGstValue', 'totalValueWithGst', 'actons'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private dialog: MatDialog, private afs: AngularFirestore, private loadingService: LoadingService, private pdfService: PdfServiceService) { }
+  constructor(private snackbar: MatSnackBar,private dialog: MatDialog, private afs: AngularFirestore, private loadingService: LoadingService, private pdfService: PdfServiceService) { }
 
   ngAfterViewInit() {
     this.getPos();
@@ -32,8 +35,12 @@ export class PurchaseOrderComponent implements AfterViewInit {
   getPos() {
     this.poArray = [];
     this.loadingService.presentLoading("Please wait...");
-    this.afs.collection("po").valueChanges().subscribe((response: any) => {
-      this.poArray = response;
+    this.afs.collection("po").get().subscribe((response: any) => {
+      response.forEach(element => {
+        var materialTemp = element.data();
+        materialTemp.id = element.id;
+        this.poArray.push(materialTemp);
+      });
       this.dataSource = new MatTableDataSource(this.poArray);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -70,22 +77,51 @@ export class PurchaseOrderComponent implements AfterViewInit {
 
     worksheet.mergeCells("A3:I3");
     const cell = worksheet.getCell('C3');
-    cell.value="V-Ctrl Solutions Private Limited ";
-    cell.alignment = { horizontal:'center'} ;
-    cell.font={name: "Bookman Old Style", size: 20, bold: true};
+    cell.value = "V-Ctrl Solutions Private Limited ";
+    cell.alignment = { horizontal: 'center' };
+    cell.font = { name: "Bookman Old Style", size: 20, bold: true };
 
     //Draw border
     worksheet.getCell('C3').border = {
-      top: {style:'medium', color: {argb:'FA000000'}},
-      left: {style:'medium', color: {argb:'FA000000'}},
-      bottom: {style:'medium', color: {argb:'FA000000'}},
-      right: {style:'medium', color: {argb:'FA000000'}}
+      top: { style: 'medium', color: { argb: 'FA000000' } },
+      left: { style: 'medium', color: { argb: 'FA000000' } },
+      bottom: { style: 'medium', color: { argb: 'FA000000' } },
+      right: { style: 'medium', color: { argb: 'FA000000' } }
     };
 
 
     workbook.xlsx.writeBuffer().then((data) => {
       let blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
       fs.saveAs(blob, poModal.poNumber + '.xlsx');
+    });
+  }
+
+  deletePO(row) {
+    const dialogRef = this.dialog.open(DeleteConfirmationComponent, {
+      width: '450px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.confirmation) {
+        this.afs.collection("po").doc(row.id).delete().then(response => {
+          if (response == undefined) {
+            this.snackbar.open("PO deleted successfully!", "OK", { duration: 3000 });
+            this.getPos();
+          }
+        });
+      }
+    });
+  }
+
+  materialReceived(row: PoModal){
+    const dialogRef = this.dialog.open(MaterialsReceivedComponent, {
+      width: '750px',
+      data: row
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.confirmation) {
+        this.getPos();
+      }
     });
   }
 

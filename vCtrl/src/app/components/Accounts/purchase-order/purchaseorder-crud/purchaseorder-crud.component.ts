@@ -49,8 +49,6 @@ export class PurchaseorderCrudComponent implements OnInit {
   warranties: Warranty[] = [];
   deliverySchedules: DeliverySchedules[] = [];
   modeOfDispatch: ModeOfDispatch[] = [];
-
-  purchaseOrder: PoModal = {};
   gstValue = 0;
   totalWithGst = 0;
   constructor(
@@ -84,29 +82,31 @@ export class PurchaseorderCrudComponent implements OnInit {
       this.snackbar.open("Please select atleast one material for PO.", "OK", { duration: 2000 });
       return;
     }
-    this.purchaseOrder.materials = this.materials;
-    this.purchaseOrder.vendor = this.vendors[this.vendors.findIndex(v => v.id == this.vendorControl.value)];
-    this.purchaseOrder.poNumber = this.poNumber;
-    this.purchaseOrder.poDate = this.poDateControl.value;
-    this.purchaseOrder.branch = this.branchArray[this.branchArray.findIndex(b => b.id == this.branchControl.value)];
-    this.purchaseOrder.gstPercentage = this.gstControl.value;
+    var purchaseOrder: PoModal = {
+      materials: this.materials,
+      vendor: this.vendors[this.vendors.findIndex(v => v.id == this.vendorControl.value)],
+      poNumber: this.poNumber,
+      branch: this.branchArray[this.branchArray.findIndex(b => b.id == this.branchControl.value)],
+      gstPercentage: this.gstControl.value,
+      poDate: new Date(this.poDateControl.value).toLocaleString(),
+      modeOfDispatch: this.modeOfDispatch[this.modeOfDispatch.findIndex(xc => xc.id == this.modControl.value)],
+      paymentTerms: this.paymentTerms[this.paymentTerms.findIndex(xc => xc.id == this.ptControl.value)],
+      warranty: this.warranties[this.warranties.findIndex(wr => wr.id == this.warrControl.value)],
+      deliverySchedule: this.deliverySchedules[this.deliverySchedules.findIndex(xc => xc.id == this.dsControl.value)],
+      totalCost: this.getTotalCost(),
+      totalQuantity: this.getTotalQuantity(),
+      totalGstValue: this.getGstValue(),
+      totalValueWithGst: this.getTotalGstValue(),
+      stockUpdated: false,
+    };
 
-    this.purchaseOrder.modeOfDispatch = this.modeOfDispatch[this.modeOfDispatch.findIndex(xc => xc.id == this.modControl.value)];
-    this.purchaseOrder.paymentTerms = this.paymentTerms[this.paymentTerms.findIndex(xc => xc.id == this.ptControl.value)];
-    this.purchaseOrder.warranty = this.warranties[this.warranties.findIndex(wr => wr.id == this.warrControl.value)];
-    this.purchaseOrder.deliverySchedule = this.deliverySchedules[this.deliverySchedules.findIndex(xc => xc.id == this.dsControl.value)];
-
-    this.purchaseOrder.totalCost = this.getTotalCost();
-    this.purchaseOrder.totalQuantity = this.getTotalQuantity();
-    this.purchaseOrder.totalGstValue = this.getGstValue();
-    this.purchaseOrder.totalValueWithGst = this.getTotalGstValue();
     //Proceed to save PO
     this.loadingService.presentLoading("Saving purchase order...")
-    this.afs.collection("po").doc(this.poNumber).set(this.purchaseOrder).then(response => {
+    this.afs.collection("po").doc(this.poNumber).set(purchaseOrder).then(response => {
       console.log(response)
       if (boolPrint) {
-        this.afs.collection("po").doc(this.poNumber).get().subscribe(response => {
-          var poModal = response.data();
+        this.afs.collection("po").doc(this.poNumber).get().subscribe((response: any) => {
+          var poModal: PoModal = response.data();
           console.log(poModal);
           this.pdfService.generatePdfPurchaseModal(poModal);
           this.loadingService.dismissLoading();

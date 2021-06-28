@@ -5,6 +5,16 @@
     <mat-label class="required">Name</mat-label>
     <input matInput autocomplete="off" formControlName="name">
   </mat-form-field>
+  <div style="display: flex;">
+    <mat-form-field class="example-full-width">
+      <mat-label>HSN Code</mat-label>
+      <input matInput autocomplete="off" formControlName="hsnCode" type="number">
+    </mat-form-field>
+    <button mat-icon-button color="primary" (click)="searchHsn()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+  <p *ngIf="hsnSearchFound" style="font-size: 10px;margin: 0;font-style: italic;">{{hsnValues}}</p>
   <mat-form-field class="example-full-width">
     <mat-label>Input</mat-label>
     <input matInput autocomplete="off" formControlName="input" placeholder="Ex. 340-480 VAC ">
@@ -23,7 +33,8 @@
   </mat-form-field>
   <mat-form-field class="example-full-width">
     <mat-label>Product description</mat-label>
-    <textarea matInput autocomplete="off" placeholder="Ex. WITH EARTH FAULT PROTECTION" formControlName="description"></textarea>
+    <textarea matInput autocomplete="off" placeholder="Ex. WITH EARTH FAULT PROTECTION"
+      formControlName="description"></textarea>
   </mat-form-field>
 </form>
 

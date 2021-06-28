@@ -1,5 +1,6 @@
 export interface Product {
     id?: string,
+    hsnCode?: number,
     name: string,
     input: string,
     output: string,
